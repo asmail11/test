@@ -10,9 +10,9 @@ public class CapiSkinServerApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CapiSkinServerApplication.class, args);
 		
-		System.out.println("\n\n [..................................................]");
-		System.out.println(" [... CapiSkin Application Started Successfully ....]");
-		System.out.println(" [..................................................] \n\n");
+		System.out.println("\n\n |..................................................|");
+		System.out.println(" |... CapiSkin Application Started Successfully ....|");
+		System.out.println(" |..................................................| \n\n");
 		
 
 	}

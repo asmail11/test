@@ -1,10 +1,14 @@
 package org.capiskinserver.application.hair.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.util.List;
 
-public class CategoryDto {
+public class CategoryDto extends PersistableElementDto {
+
 	private String name;
+
+	private List<BodyAndHairDto> bodyAndHairs;
+
+	private List<CharacteristicDto> characteristics;
 
 	public String getName() {
 		return name;
@@ -13,6 +17,21 @@ public class CategoryDto {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
+	public List<BodyAndHairDto> getBodyAndHairs() {
+		return bodyAndHairs;
+	}
+
+	public void setBodyAndHairs(List<BodyAndHairDto> bodyAndHairs) {
+		this.bodyAndHairs = bodyAndHairs;
+	}
+
+	public List<CharacteristicDto> getCharacteristics() {
+		return characteristics;
+	}
+
+	public void setCharacteristics(List<CharacteristicDto> characteristics) {
+		this.characteristics = characteristics;
+	}
+
 }
