@@ -1,4 +1,4 @@
-package org.capiskinserver.application.hair;
+package org.capiskinserver.application.hair.service;
 
 import org.capiskinserver.application.hair.dto.ActifDto;
 import org.capiskinserver.domain.hair.OrikaBeanMapper;

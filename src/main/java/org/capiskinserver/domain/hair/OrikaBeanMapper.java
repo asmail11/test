@@ -4,7 +4,6 @@ import ma.glasnost.orika.MapperFactory;
 import ma.glasnost.orika.impl.ConfigurableMapper;
 import ma.glasnost.orika.impl.DefaultMapperFactory;
 import ma.glasnost.orika.impl.generator.JavassistCompilerStrategy;
-import ma.glasnost.orika.metadata.ClassMapBuilder;
 import ma.glasnost.orika.unenhance.HibernateUnenhanceStrategy;
 import java.util.List;
 import org.springframework.data.domain.Page;
@@ -29,26 +28,6 @@ public class OrikaBeanMapper extends ConfigurableMapper {
 
   }
   
- private void registerClassMap(Class a, Class b) {
-   this.factory.classMap(a, b).mapNulls(true).mapNullsInReverse(true).byDefault().register();
- }
-  
- /**
-  * Register class map with fields to exclude
- *
- * @param a
- * @param b
- * @param excludeFields
- */
- 
- private void registerClassMap(Class a, Class b, String... excludeFields) {
-   ClassMapBuilder builder = this.factory.classMap(a, b);
-    for (String excludeField : excludeFields) {
-                builder.exclude(excludeField);
-    }
-     builder.mapNulls(true).mapNullsInReverse(true).byDefault().register();
-  }
-
  /**
  * {@inheritDoc}
  */

@@ -1,4 +1,4 @@
-package org.capiskinserver.application.hair;
+package org.capiskinserver.application.hair.service;
 
 import java.util.List;
 
