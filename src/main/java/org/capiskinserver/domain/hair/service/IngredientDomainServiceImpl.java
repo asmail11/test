@@ -2,22 +2,22 @@ package org.capiskinserver.domain.hair.service;
 
 import java.util.Date;
 
-import org.capiskinserver.domain.hair.dao.IngrdientDao;
+import org.capiskinserver.domain.hair.dao.IngredientDao;
 import org.capiskinserver.domain.hair.modal.FaceAndCare;
-import org.capiskinserver.domain.hair.modal.Ingrdient;
+import org.capiskinserver.domain.hair.modal.Ingredient;
 import org.capiskinserver.exception.AlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class IngrdientDomainServiceImpl implements IngrdientDomainService {
+public class IngredientDomainServiceImpl implements IngredientDomainService {
 
 	@Autowired
-	private IngrdientDao ingrdientDao;
+	private IngredientDao ingrdientDao;
 
 	@Override
-	public Ingrdient addIngrdient(Ingrdient ingrdient, FaceAndCare faceAndCare) {
-		if (faceAndCare.hasIngrdient(ingrdient.getName())) {
+	public Ingredient addIngredient(Ingredient ingrdient, FaceAndCare faceAndCare) {
+		if (faceAndCare.hasIngredient(ingrdient.getName())) {
 			throw new AlreadyExistsException("\n The name of ingrdient has be unique \n");
 		}
 		if (ingrdient != null && faceAndCare != null) {
@@ -29,7 +29,7 @@ public class IngrdientDomainServiceImpl implements IngrdientDomainService {
 	}
 
 	@Override
-	public Ingrdient editIngrdient(Ingrdient ingrdient, Ingrdient existIngrdient) {
+	public Ingredient editIngredient(Ingredient ingrdient, Ingredient existIngrdient) {
 		if (ingrdient != null && existIngrdient != null) {
 			existIngrdient.setCreatedAt(null);
 			existIngrdient.setUpdatedAt(new Date());

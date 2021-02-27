@@ -9,6 +9,6 @@ public interface IngredientProductDominService {
 	
 	IngredientProduct addIngredientProduct(IngredientProduct ingredientProduct, BaseProduct baseProduct);
 	
-	IngredientProduct beditIngredientProduct(IngredientProduct ingredientProduct, IngredientProduct existIngredientProduct);
+	IngredientProduct editIngredientProduct(IngredientProduct ingredientProduct, IngredientProduct existIngredientProduct);
 
 }

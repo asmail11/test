@@ -5,7 +5,6 @@ import java.util.Date;
 import org.capiskinserver.domain.hair.dao.FinalProductDao;
 import org.capiskinserver.domain.hair.modal.ContentMillimiter;
 import org.capiskinserver.domain.hair.modal.FinalProduct;
-import org.capiskinserver.domain.hair.modal.IngredientProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,9 +15,9 @@ public class FinalProductDomainServiceImpl implements FinalProductDomainService 
 	private FinalProductDao finalProductDao;
 
 	@Override
-	public FinalProduct createFinalProduct(FinalProduct finalProduct, IngredientProduct ingredientProduct,
+	public FinalProduct addFinalProduct(FinalProduct finalProduct,
 			ContentMillimiter contentMillimiter) {
-		if (finalProduct != null && ingredientProduct != null && contentMillimiter != null) {
+		if (finalProduct != null && contentMillimiter != null) {
 			finalProduct.setCreatedAt(new Date());
 			finalProduct.setContentMillimiter(contentMillimiter);
 			contentMillimiter.setFinalProduct(finalProduct);

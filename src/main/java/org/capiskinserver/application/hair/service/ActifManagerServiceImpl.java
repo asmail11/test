@@ -46,12 +46,12 @@ public class ActifManagerServiceImpl implements ActifManagerService {
 	}
 
 	@Override
-	public ActifDto finActif(long idActif) {
+	public ActifDto findActif(long idActif) {
 		return orikaBeanMapper.convertDTO(actifDao.getOne(idActif), ActifDto.class);
 	}
 
 	@Override
-	public ActifDto finActifForCharacteristic(long idCharacteristic) {
+	public ActifDto findActifForCharacteristic(long idCharacteristic) {
 		Characteristic characteristic = characteristicDao.getOne(idCharacteristic);
 		return orikaBeanMapper.convertDTO(characteristic.getActif(), ActifDto.class);
 	}

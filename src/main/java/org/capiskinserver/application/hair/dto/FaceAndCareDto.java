@@ -8,7 +8,7 @@ public class FaceAndCareDto extends PersistableElementDto {
 	
 	private String name;
 
-	private List<IngrdientDto> ingrdients;
+	private List<IngredientDto> ingredients;
 
 	public String getName() {
 		return name;
@@ -18,14 +18,15 @@ public class FaceAndCareDto extends PersistableElementDto {
 		this.name = name;
 	}
 
-	public List<IngrdientDto> getIngrdients() {
-		return ingrdients;
+	public List<IngredientDto> getIngredients() {
+		return ingredients;
 	}
 
-	public void setIngrdients(List<IngrdientDto> ingrdients) {
-		this.ingrdients = ingrdients;
+	public void setIngredients(List<IngredientDto> ingredients) {
+		this.ingredients = ingredients;
 	}
-	
+
+
 	
 
 

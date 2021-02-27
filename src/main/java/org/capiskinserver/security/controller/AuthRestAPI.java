@@ -1,7 +1,5 @@
 package org.capiskinserver.security.controller;
 
-
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -37,115 +35,110 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthRestAPI {
 
-	  @Autowired
-	  AuthenticationManager authenticationManager;
-	 
-	  @Autowired
-	  UserRepository userRepository;
-	 	  
-	 
-	  @Autowired
-	  RoleRepository roleRepository;
-	 
-	 
-	  @Autowired
-	  PasswordEncoder encoder;
-	 
-	  @Autowired
-	  JwtProvider jwtProvider;
-	  
-	  @Autowired
-	  private EmailService service;
-	  
-	  
-	  @PostMapping("/signin")
-	  public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginFormDto loginRequest) {
-	 
-	    Authentication authentication = authenticationManager.authenticate((Authentication) (
-	        new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())));
-	 
-	    SecurityContextHolder.getContext().setAuthentication(authentication);
-	     
+	@Autowired
+	AuthenticationManager authenticationManager;
 
-	    //AppUser user = (AppUser) 
-	    		SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	 
-	    String jwt = jwtProvider.generateJwtToken(authentication);
-	    UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-	
-	
-	    return ResponseEntity.ok(new JwtResponseDto(jwt, userDetails.getId(),  userDetails.getName(), loginRequest.getEmail(),  userDetails.getUsername(), userDetails.getAuthorities()));
-	  }
-	 
-	  @PostMapping("/signup")
-	  public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpFormDto signUpRequest) {
-		  
-		  
-		  if(!signUpRequest.getPassword().equals(signUpRequest.getRepassword()))
-				throw new RuntimeException("You must confirme your password");
+	@Autowired
+	UserRepository userRepository;
 
-	 
-	    // Creating user's account
-	    User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
-	        encoder.encode(signUpRequest.getPassword()), signUpRequest.isAdmin());
-	 
-	    //Get all roles
-	    Set<String> strRoles = signUpRequest.getRole();
-	    Set<Role> roles = new HashSet<>();
-	    
-	    
-	    // Send email to user when account is created
+	@Autowired
+	RoleRepository roleRepository;
+
+	@Autowired
+	PasswordEncoder encoder;
+
+	@Autowired
+	JwtProvider jwtProvider;
+
+	@Autowired
+	private EmailService service;
+
+	@PostMapping("/signin")
+	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginFormDto loginRequest) {
+
+		Authentication authentication = authenticationManager
+				.authenticate((Authentication) (new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),
+						loginRequest.getPassword())));
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		// AppUser user = (AppUser)
+		SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		String jwt = jwtProvider.generateJwtToken(authentication);
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+		return ResponseEntity.ok(new JwtResponseDto(jwt, userDetails.getId(), userDetails.getName(),
+				loginRequest.getEmail(), userDetails.getUsername(), userDetails.getAuthorities()));
+	}
+
+	@PostMapping("/signup")
+	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpFormDto signUpRequest) {
+
+		if (!signUpRequest.getPassword().equals(signUpRequest.getRepassword()))
+			throw new RuntimeException("You must confirme your password");
+
+		// Creating user's account
+		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(),
+				encoder.encode(signUpRequest.getPassword()));
+
+		if (userRepository.findAll().size() == 0) {
+			user.setAdmin(true);
+		}
+
+		// Get all roles
+		Set<String> strRoles = signUpRequest.getRole();
+		Set<Role> roles = new HashSet<>();
+
+		// Send email to user when account is created
 		Map<String, Object> model = new HashMap<>();
 		model.put("Name", signUpRequest.getName());
 		model.put("location", "France,Paris");
-		
-		//Get user Information to send email
+
+		// Get user Information to send email
 		signUpRequest.setTo(signUpRequest.getEmail());
 		signUpRequest.getTo();
 		signUpRequest.setSubject("Notification Subscription");
 		signUpRequest.getSubject();
 		signUpRequest.setFrom("vivaniah@gmail.com");
 		signUpRequest.getFrom();
-		
+
 		service.sendEmail(signUpRequest, model);
-	    
-	    
-	    if (strRoles == null) {
-	    	Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+
+		if (strRoles == null) {
+			Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
 					.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 			roles.add(userRole);
 		} else {
-	    strRoles.forEach(role -> {
-	      switch (role) {
-	      case "admin":
-	    	  Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
-	            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-	        roles.add(adminRole);
-	 
-	        break;
-	      case "pm":
-	    	  Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
-	            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-	        roles.add(pmRole);
-	 
-	        break;
-	      default:
-	    	  Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
-	            .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
-	        roles.add(userRole);
-	      }
-	    });
-	  }
-	    user.setRoles(roles);
-	    userRepository.save(user);
+			strRoles.forEach(role -> {
+				switch (role) {
+				case "admin":
+					Role adminRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
+							.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+					roles.add(adminRole);
 
- 
-	    return new ResponseEntity<>(new ResponseMessageDto("User registered successfully!"), HttpStatus.OK);
+					break;
+				case "pm":
+					Role pmRole = roleRepository.findByName(RoleName.ROLE_PM)
+							.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+					roles.add(pmRole);
+
+					break;
+				default:
+					Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+							.orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
+					roles.add(userRole);
+				}
+			});
+		}
+		user.setRoles(roles);
+		userRepository.save(user);
+
+		return new ResponseEntity<>(new ResponseMessageDto("User registered successfully!"), HttpStatus.OK);
 	}
 }

@@ -32,18 +32,18 @@ public class FaceAndCare extends PersistableElement {
 	private BodyAndHair bodyAndHair;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "faceAndCare", orphanRemoval = true)
-	private List<Ingrdient> ingrdients;
+	private List<Ingredient> ingredients;
 
 	public FaceAndCare() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public FaceAndCare(String name, BodyAndHair bodyAndHair, List<Ingrdient> ingrdients) {
+	public FaceAndCare(String name, BodyAndHair bodyAndHair, List<Ingredient> ingredients) {
 		super();
 		this.name = name;
 		this.bodyAndHair = bodyAndHair;
-		this.ingrdients = ingrdients;
+		this.ingredients = ingredients;
 	}
 
 	public String getName() {
@@ -62,25 +62,25 @@ public class FaceAndCare extends PersistableElement {
 		this.bodyAndHair = bodyAndHair;
 	}
 
-	public List<Ingrdient> getIngrdients() {
-		return ingrdients;
+	public List<Ingredient> getIngredients() {
+		return ingredients;
 	}
 
-	public void setIngrdients(List<Ingrdient> ingrdients) {
-		this.ingrdients = ingrdients;
+	public void setIngrdients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
-	public void addIngrdient(Ingrdient ingrdient) {
-		if (getIngrdients() == null) {
-			this.ingrdients = new ArrayList<>();
+	public void addIngrdient(Ingredient ingrdient) {
+		if (getIngredients() == null) {
+			this.ingredients = new ArrayList<>();
 		}
-		getIngrdients().add(ingrdient);
+		getIngredients().add(ingrdient);
 		ingrdient.setFaceAndCare(this);
 	}
 
-	public boolean hasIngrdient(String name) {
-		if (getIngrdients() != null) {
-			return getIngrdients().stream()
+	public boolean hasIngredient(String name) {
+		if (getIngredients() != null) {
+			return getIngredients().stream()
 					.filter(ingrdients -> ingrdients.getName().toLowerCase().equals(name.toLowerCase())).findAny()
 					.orElse(null) != null;
 		}

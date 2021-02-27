@@ -26,7 +26,7 @@ public class IngredientProductDominServiceImpl implements IngredientProductDomin
 	}
 
 	@Override
-	public IngredientProduct beditIngredientProduct(IngredientProduct ingredientProduct,
+	public IngredientProduct editIngredientProduct(IngredientProduct ingredientProduct,
 			IngredientProduct existIngredientProduct) {
 		if (ingredientProduct != null && existIngredientProduct != null) {
 			existIngredientProduct.setCreatedAt(null);

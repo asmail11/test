@@ -1,6 +1,6 @@
 package org.capiskinserver.application.hair.dto;
 
-public class IngrdientDto extends PersistableElementDto {
+public class IngredientDto extends PersistableElementDto {
 	private String name;
 
 	public String getName() {

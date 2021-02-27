@@ -10,9 +10,9 @@ public interface ActifManagerService {
 	
 	ActifDto editActif(ActifDto actifDto, long idActif);
 	
-	ActifDto finActif(long idActif);
+	ActifDto findActif(long idActif);
 	
-	ActifDto finActifForCharacteristic(long idCharacteristic);
+	ActifDto findActifForCharacteristic(long idCharacteristic);
 	
 	void deleteActif(long idActif, long idCharacteristic);
 

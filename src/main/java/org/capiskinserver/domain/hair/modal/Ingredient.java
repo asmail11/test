@@ -11,7 +11,7 @@ import org.capiskinserver.config.PersistableElement;
 
 @Entity
 @Table(name = "ingrdients")
-public class Ingrdient extends PersistableElement {
+public class Ingredient extends PersistableElement {
 
 	/**
 	 * 
@@ -26,11 +26,11 @@ public class Ingrdient extends PersistableElement {
 	@ManyToOne
 	private FaceAndCare faceAndCare;
 
-	public Ingrdient() {
+	public Ingredient() {
 		super();
 	}
 
-	public Ingrdient(String name, FaceAndCare faceAndCare) {
+	public Ingredient(String name, FaceAndCare faceAndCare) {
 		super();
 		this.name = name;
 		this.faceAndCare = faceAndCare;
