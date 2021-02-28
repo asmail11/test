@@ -12,7 +12,7 @@ public interface VegetableOilManagerService {
 	
 	VegetableOilDto findVegetableOil(long idVegetableOil);
 	
-	VegetableOilDto finVegetableOilForCharacteristic(long idCharacteristic);
+	VegetableOilDto findVegetableOilForCharacteristic(long idCharacteristic);
 	
 	void deleteVegetableOil(long idVegetableOil, long idCharacteristic);
 	

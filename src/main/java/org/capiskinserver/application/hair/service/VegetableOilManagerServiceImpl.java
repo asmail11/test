@@ -1,12 +1,12 @@
-package org.capiskinserver.domain.hair.service;
+package org.capiskinserver.application.hair.service;
 
 import org.capiskinserver.application.hair.dto.VegetableOilDto;
-import org.capiskinserver.application.hair.service.VegetableOilManagerService;
 import org.capiskinserver.domain.hair.OrikaBeanMapper;
 import org.capiskinserver.domain.hair.dao.CharacteristicDao;
 import org.capiskinserver.domain.hair.dao.VegetableOilDao;
 import org.capiskinserver.domain.hair.modal.Characteristic;
 import org.capiskinserver.domain.hair.modal.VegetableOil;
+import org.capiskinserver.domain.hair.service.VegetableOilDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -55,7 +55,7 @@ public class VegetableOilManagerServiceImpl implements VegetableOilManagerServic
 	}
 
 	@Override
-	public VegetableOilDto finVegetableOilForCharacteristic(long idCharacteristic) {
+	public VegetableOilDto findVegetableOilForCharacteristic(long idCharacteristic) {
 		Characteristic characteristic = characteristicDao.getOne(idCharacteristic);
 		return orikaBeanMapper.convertDTO(characteristic.getVegetableOil(), VegetableOilDto.class);
 	}

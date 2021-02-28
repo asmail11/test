@@ -33,9 +33,9 @@ public class VegetableOilController extends RestBaseController {
 		return vegetableOilManagerService.findVegetableOil(idVegetableOil);
 	}
 
-	@GetMapping("/finVegetableOilForCharacteristic/{idCharacteristic}")
-	VegetableOilDto finVegetableOilForCharacteristic(@PathVariable long idCharacteristic) {
-		return vegetableOilManagerService.finVegetableOilForCharacteristic(idCharacteristic);
+	@GetMapping("/findVegetableOilForCharacteristic/{idCharacteristic}")
+	VegetableOilDto findVegetableOilForCharacteristic(@PathVariable long idCharacteristic) {
+		return vegetableOilManagerService.findVegetableOilForCharacteristic(idCharacteristic);
 	}
 
 	@DeleteMapping("/deleteVegetableOil/{idVegetableOil}/{idCharacteristic}")

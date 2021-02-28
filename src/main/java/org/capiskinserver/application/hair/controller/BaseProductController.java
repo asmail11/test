@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
-public class BasePRoductController extends RestBaseController {
+public class BaseProductController extends RestBaseController {
 
 	@Autowired
 	private BaseProductManagerService baseProductManagerService;

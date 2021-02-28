@@ -17,5 +17,7 @@ public interface CommandManagerService {
 	List<CommandDto> findCommandForUser(long idUser);
 	
 	List<CommandDto> finCommands();
+	
+	void deleteCommand(long idCommand);
 
 }

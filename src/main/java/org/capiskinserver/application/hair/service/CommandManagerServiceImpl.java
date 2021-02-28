@@ -71,4 +71,11 @@ public class CommandManagerServiceImpl implements CommandManagerService {
 		return orikaBeanMapper.convertListDTO(commands, CommandDto.class);
 	}
 
+	@Override
+	public void deleteCommand(long idCommand) {
+		Command existCommand = commandDao.getOne(idCommand);
+		commandDao.delete(existCommand);
+		
+	}
+
 }
