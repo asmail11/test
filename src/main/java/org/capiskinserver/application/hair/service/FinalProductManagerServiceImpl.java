@@ -12,8 +12,10 @@ import org.capiskinserver.domain.hair.modal.FinalProduct;
 import org.capiskinserver.domain.hair.modal.IngredientProduct;
 import org.capiskinserver.domain.hair.service.FinalProductDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class FinalProductManagerServiceImpl implements FinalProductManagerService {
 

@@ -11,7 +11,7 @@ export class CategoryService {
 
   addCategory(categoryDto: CategoryDto, idUser: number): Observable<CategoryDto> {
     return this.http.post<CategoryDto>(
-      `http://localhost:8080/api/addCategory/${idUser}`,
+      `http://localhost:8080/api/addCategorys/${idUser}`,
       categoryDto
     );
   }

@@ -1,7 +1,8 @@
 package org.capiskinserver.domain.hair.service;
 
 import org.capiskinserver.domain.hair.modal.Command;
-import org.capiskinserver.security.modal.User;
+import org.capiskinserver.security.model.User;
+//import org.capiskinserver.security.modal.User;
 import org.springframework.stereotype.Service;
 
 @Service

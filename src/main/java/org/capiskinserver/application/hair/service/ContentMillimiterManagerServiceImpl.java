@@ -8,8 +8,10 @@ import org.capiskinserver.domain.hair.modal.ContentMillimiter;
 import org.capiskinserver.domain.hair.modal.FinalProduct;
 import org.capiskinserver.domain.hair.service.ContentMillimiterDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class ContentMillimiterManagerServiceImpl implements ContentMillimiterManagerService {
 	

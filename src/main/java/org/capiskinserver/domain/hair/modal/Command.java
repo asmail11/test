@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.capiskinserver.config.PersistableElement;
-import org.capiskinserver.security.modal.User;
+import org.capiskinserver.security.model.User;
+import org.capiskinserver.util.PersistableElement;
 
 @Entity
 @Table(name = "commands")
@@ -24,9 +24,10 @@ public class Command extends PersistableElement {
 
 	private boolean status;
 
-	@ManyToOne
-	private User user;
-
+	
+	  @ManyToOne 
+	  private User user;
+	 
 	public Command() {
 		super();
 		// TODO Auto-generated constructor stub

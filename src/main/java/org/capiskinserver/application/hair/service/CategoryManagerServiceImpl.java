@@ -9,11 +9,13 @@ import org.capiskinserver.domain.hair.OrikaBeanMapper;
 import org.capiskinserver.domain.hair.dao.CategoryDao;
 import org.capiskinserver.domain.hair.modal.Category;
 import org.capiskinserver.domain.hair.service.CategoryDomainService;
-import org.capiskinserver.security.dao.UserRepository;
-import org.capiskinserver.security.modal.User;
+import org.capiskinserver.security.model.User;
+import org.capiskinserver.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class CategoryManagerServiceImpl implements CategoryManagerService {
 

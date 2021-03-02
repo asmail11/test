@@ -9,11 +9,13 @@ import org.capiskinserver.domain.hair.OrikaBeanMapper;
 import org.capiskinserver.domain.hair.dao.CommandDao;
 import org.capiskinserver.domain.hair.modal.Command;
 import org.capiskinserver.domain.hair.service.CommandDomainService;
-import org.capiskinserver.security.dao.UserRepository;
-import org.capiskinserver.security.modal.User;
+import org.capiskinserver.security.model.User;
+import org.capiskinserver.security.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class CommandManagerServiceImpl implements CommandManagerService {
 

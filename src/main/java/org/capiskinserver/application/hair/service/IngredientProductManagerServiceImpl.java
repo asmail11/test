@@ -8,8 +8,10 @@ import org.capiskinserver.domain.hair.modal.BaseProduct;
 import org.capiskinserver.domain.hair.modal.IngredientProduct;
 import org.capiskinserver.domain.hair.service.IngredientProductDominService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class IngredientProductManagerServiceImpl implements IngredientProductManagerService {
 

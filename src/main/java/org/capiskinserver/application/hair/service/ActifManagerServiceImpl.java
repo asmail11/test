@@ -8,8 +8,10 @@ import org.capiskinserver.domain.hair.modal.Actif;
 import org.capiskinserver.domain.hair.modal.Characteristic;
 import org.capiskinserver.domain.hair.service.ActifDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class ActifManagerServiceImpl implements ActifManagerService {
 

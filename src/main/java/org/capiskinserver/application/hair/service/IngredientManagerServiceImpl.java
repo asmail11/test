@@ -11,8 +11,10 @@ import org.capiskinserver.domain.hair.dao.IngredientDao;
 import org.capiskinserver.domain.hair.modal.FaceAndCare;
 import org.capiskinserver.domain.hair.modal.Ingredient;
 import org.capiskinserver.domain.hair.service.IngredientDomainService;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class IngredientManagerServiceImpl implements IngredientManagerService {
 

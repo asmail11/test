@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.capiskinserver.config.PersistableElement;
+import org.capiskinserver.util.PersistableElement;
 
 @Entity
 @Table(name = "ingredientProducts")

@@ -4,7 +4,7 @@ import java.util.Date;
 
 import org.capiskinserver.domain.hair.dao.CommandDao;
 import org.capiskinserver.domain.hair.modal.Command;
-import org.capiskinserver.security.modal.User;
+import org.capiskinserver.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

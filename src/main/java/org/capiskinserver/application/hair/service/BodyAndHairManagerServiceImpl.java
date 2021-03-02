@@ -12,8 +12,10 @@ import org.capiskinserver.domain.hair.modal.BodyAndHair;
 import org.capiskinserver.domain.hair.modal.Category;
 import org.capiskinserver.domain.hair.service.BodyAndHairDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class BodyAndHairManagerServiceImpl implements BodyAndHairManagerService {
 

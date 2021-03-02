@@ -42,8 +42,9 @@ import { DashboardComponent } from '../admin/dashboard/dashboard/dashboard.compo
 import { AddIngredientProductComponent } from '../admin/ingredient-product/add-ingredient-product/add-ingredient-product.component';
 import { FindIngredientProductComponent } from '../admin/ingredient-product/find-ingredient-product/find-ingredient-product.component';
 import { DisplayIngredientProdutComponent } from '../admin/ingredient-product/display-ingredient-produt/display-ingredient-produt.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material-module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -85,14 +86,17 @@ import { MaterialModule } from './material-module';
     AddVegetableOilComponent,
     FindVegetableOilComponent,
     DisplayVegetableOilComponent,
-    DashboardComponent,
     AddIngredientProductComponent,
     FindIngredientProductComponent,
     DisplayIngredientProdutComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    RouterModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [
     MaterialModule

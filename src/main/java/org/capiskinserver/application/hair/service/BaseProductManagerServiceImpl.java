@@ -12,8 +12,10 @@ import org.capiskinserver.domain.hair.modal.BaseProduct;
 import org.capiskinserver.domain.hair.modal.Needs;
 import org.capiskinserver.domain.hair.service.BaseProductDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
 @Transactional
 public class BaseProductManagerServiceImpl implements BaseProductManagerService {
 

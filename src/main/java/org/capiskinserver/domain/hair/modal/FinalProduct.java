@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.capiskinserver.config.PersistableElement;
+import org.capiskinserver.util.PersistableElement;
 
 @Entity
 @Table(name = "finalProducts")

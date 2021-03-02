@@ -12,8 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.capiskinserver.config.PersistableElement;
-import org.capiskinserver.security.modal.User;
+import org.capiskinserver.security.model.User;
+import org.capiskinserver.util.PersistableElement;
 
 @Entity
 @Table(name = "categories")
@@ -35,12 +35,19 @@ public class Category extends PersistableElement {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category", orphanRemoval = true)
 	private List<Characteristic> characteristics;
 
-	@ManyToOne
-	private User user;
+	
+    @ManyToOne 
+    private User user;
+	 
 
 	public Category() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Category(@NotBlank @Size(min = 3, max = 50) String name) {
+		super();
+		this.name = name;
 	}
 
 	public Category(String name, List<BodyAndHair> bodyAndHairs, List<Characteristic> characteristics, User user) {
