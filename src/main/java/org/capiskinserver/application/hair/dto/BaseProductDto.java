@@ -1,17 +1,10 @@
 package org.capiskinserver.application.hair.dto;
 
 public class BaseProductDto extends PersistableElementDto {
-	private String name;
 
 	private double price;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
+	private IngredientProductDto ingredientProduct;
 
 	public double getPrice() {
 		return price;
@@ -21,4 +14,12 @@ public class BaseProductDto extends PersistableElementDto {
 		this.price = price;
 	}
 
+	public IngredientProductDto getIngredientProduct() {
+		return ingredientProduct;
+	}
+
+	public void setIngredientProduct(IngredientProductDto ingredientProduct) {
+		this.ingredientProduct = ingredientProduct;
+	}
+	
 }

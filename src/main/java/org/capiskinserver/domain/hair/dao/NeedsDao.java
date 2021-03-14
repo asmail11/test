@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NeedsDao extends JpaRepository<Needs, Long>{
-
+    boolean existsByName(String checkedName);
 }

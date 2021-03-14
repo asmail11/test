@@ -1,0 +1,159 @@
+<mat-accordion>
+  <mat-expansion-panel hideToggle *ngIf="actifsLength > 0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Find actifs oil
+      </mat-panel-title>
+      <mat-panel-description>
+         {{characteristicDto.name}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-card style="background-color: #f1f2f6;">
+      <mat-card-header>
+        <mat-card-title>
+          Actifs oil
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Details</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pro of actifs">
+              <td style="font-weight: bold; color: #2c3e50;">{{pro.name}}</td>
+              <td>
+                <button mat-mini-fab disabled style="color: #c23616; font-weight: bold;">
+                  {{pro.price}}£
+                </button>
+              </td>
+              <td>
+                <span class="material-icons details" (click)="detailActif(pro.id)">
+                  visibility
+                </span>
+              </td>
+              <td><span class="material-icons delete"
+                  (click)="removeActifFromCharacteristic(characteristicDto.id, pro.id)">
+                  delete_forever
+                </span></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </mat-card-content>
+    </mat-card>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle *ngIf="essentialsLength > 0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        This essentials oil
+      </mat-panel-title>
+      <mat-panel-description>
+         {{characteristicDto.name}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-card style="background-color: #f1f2f6;">
+      <mat-card-header>
+        <mat-card-title>
+          Essential oil
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Details</th>
+
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pro of essentials">
+              <td style="font-weight: bold; color: #2c3e50;">{{pro.name}}</td>
+              <td>
+                <button mat-mini-fab disabled style="color: #c23616; font-weight: bold;">
+                  {{pro.price}}£
+                </button>
+              </td>
+              <td>
+                <span class="material-icons details" (click)="detailsEssential(pro.id)">
+                  visibility
+                </span>
+              </td>
+
+              <td><span class="material-icons delete"
+                  (click)="removeEssentialFromCharacteristic(characteristicDto.id, pro.id)">
+                  delete_forever
+                </span></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </mat-card-content>
+    </mat-card>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel hideToggle *ngIf="productsLength > 0">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Find ingredients
+      </mat-panel-title>
+      <mat-panel-description>
+       {{characteristicDto.name}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-card style="background-color: #f1f2f6;">
+      <mat-card-header>
+        <mat-card-title>
+          Ingredients
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Details</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pro of products">
+              <td style="font-weight: bold; color: #2c3e50;">{{pro.name}}</td>
+              <td>
+                <button mat-mini-fab disabled style="color: #c23616; font-weight: bold;">
+                  {{pro.price}}£
+                </button>
+              </td>
+              <td>
+                <span class="material-icons details" (click)="detailProduct(pro.id)">
+                  visibility
+                </span>
+              </td>
+              <td><span class="material-icons delete"
+                  (click)="removeProductFromCharacteristic(idCharacteristic, pro.id)">
+                  delete_forever
+                </span></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </mat-card-content>
+    </mat-card>
+
+  </mat-expansion-panel>
+</mat-accordion>

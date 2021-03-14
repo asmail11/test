@@ -1,5 +1,6 @@
 package org.capiskinserver.application.hair.dto;
 
+import java.util.List;
 
 public class VegetableOilDto extends PersistableElementDto {
 
@@ -44,6 +45,8 @@ public class VegetableOilDto extends PersistableElementDto {
 	private String photo;
 
 	private double price;
+	
+	private List<ProductDto> products;
 
 	public String getAmandeDouce() {
 		return amandeDouce;
@@ -213,4 +216,13 @@ public class VegetableOilDto extends PersistableElementDto {
 		this.price = price;
 	}
 
+	public List<ProductDto> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<ProductDto> products) {
+		this.products = products;
+	}
+
+	
 }

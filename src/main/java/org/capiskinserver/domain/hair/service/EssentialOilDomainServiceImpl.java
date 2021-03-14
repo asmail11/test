@@ -3,7 +3,6 @@ package org.capiskinserver.domain.hair.service;
 import java.util.Date;
 
 import org.capiskinserver.domain.hair.dao.EssentialOilDao;
-import org.capiskinserver.domain.hair.modal.Characteristic;
 import org.capiskinserver.domain.hair.modal.EssentialOil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,11 +14,9 @@ public class EssentialOilDomainServiceImpl implements EssentialOilDomainService 
 	private EssentialOilDao essentialOilDao;
 
 	@Override
-	public EssentialOil addEssentialOil(EssentialOil essentialOil, Characteristic characteristic) {
-		if (essentialOil != null && characteristic != null) {
+	public EssentialOil addEssentialOil(EssentialOil essentialOil) {
+		if (essentialOil != null) {
 			essentialOil.setCreatedAt(new Date());
-			essentialOil.setCharacteristic(characteristic);
-			characteristic.setEssentialOil(essentialOil);
 			return essentialOilDao.save(essentialOil);
 		}
 		return null;

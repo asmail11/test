@@ -70,6 +70,7 @@ public class ContentMillimiterManagerServiceImpl implements ContentMillimiterMan
 		FinalProduct finalProduct = finalProductDao.getOne(idFinalProduct);
 		return orikaBeanMapper.convertDTO(finalProduct.getContentMillimiter(), ContentMillimiterDto.class);
 	}
+
 	
 	
 

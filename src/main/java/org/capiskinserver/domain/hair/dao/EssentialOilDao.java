@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EssentialOilDao extends JpaRepository<EssentialOil, Long>{
-
+    boolean existsByName(String checkedName);
 }

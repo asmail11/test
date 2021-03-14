@@ -1,12 +1,7 @@
 package org.capiskinserver.domain.hair.modal;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
 import org.capiskinserver.util.PersistableElement;
 
 @Entity
@@ -18,39 +13,24 @@ public class Actif extends PersistableElement {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@NotBlank
-	@Size(min = 3, max = 50)
-	@Column(unique = true)
-	private String name;
-
-	@OneToOne
-	private Characteristic characteristic;
+	private double price;
 
 	public Actif() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Actif(String name, Characteristic characteristic) {
+	public Actif(double price) {
 		super();
-		this.name = name;
-		this.characteristic = characteristic;
+		this.price = price;
 	}
 
-	public String getName() {
-		return name;
+
+	public double getPrice() {
+		return price;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Characteristic getCharacteristic() {
-		return characteristic;
-	}
-
-	public void setCharacteristic(Characteristic characteristic) {
-		this.characteristic = characteristic;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 }

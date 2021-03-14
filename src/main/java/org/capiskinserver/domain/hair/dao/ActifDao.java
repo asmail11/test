@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ActifDao extends JpaRepository<Actif, Long>{
-
+    Boolean existsByName(String checkedName);
 }

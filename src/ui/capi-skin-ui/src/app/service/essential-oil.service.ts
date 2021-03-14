@@ -10,11 +10,10 @@ export class EssentialOilService {
   constructor(private http: HttpClient) { }
 
   addEssentialOil(
-    essentialOilDto: EssentialOilDto,
-    idCharacteristic: number
+    essentialOilDto: EssentialOilDto
   ): Observable<EssentialOilDto> {
     return this.http.post<EssentialOilDto>(
-      `http://localhost:8080/api/addEssentialOil/${idCharacteristic}`,
+      `http://localhost:8080/api/addEssentialOil`,
       essentialOilDto
     );
   }
@@ -42,6 +41,16 @@ export class EssentialOilService {
   ): Observable<EssentialOilDto[]> {
     return this.http.get<EssentialOilDto[]>(
       `http://localhost:8080/api/findEssentialOilForCharar/${idCharacteristic}`
+    );
+  }
+  essentialOilNameExists(name: string): Observable<any> {
+    return this.http.get<any>(
+      `http://localhost:8080/api/essentialOilNameExists/checkedName/${name}`
+    );
+  }
+  findEssentialOils(): Observable<EssentialOilDto[]> {
+    return this.http.get<EssentialOilDto[]>(
+      `http://localhost:8080/api/findEssentialOils`
     );
   }
 }

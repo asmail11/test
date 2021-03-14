@@ -1,57 +1,37 @@
 package org.capiskinserver.domain.hair.modal;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import org.capiskinserver.util.PersistableElement;
 
 @Entity
-@Table(name = "ingrdients")
+@Table(name = "ingredients")
 public class Ingredient extends PersistableElement {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@NotBlank
-	@Size(min = 3, max = 50)
-	@Column(unique = true)
-	private String name;
-	
-	@ManyToOne
-	private FaceAndCare faceAndCare;
 
-	public Ingredient() {
-		super();
-	}
+		private double price;
+     
+		public Ingredient() {
+			super();
+		}
 
-	public Ingredient(String name, FaceAndCare faceAndCare) {
-		super();
-		this.name = name;
-		this.faceAndCare = faceAndCare;
-	}
+		public Ingredient(double price) {
+			super();
+			this.price = price;
+		}
 
-	public String getName() {
-		return name;
-	}
+		public double getPrice() {
+			return price;
+		}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public FaceAndCare getFaceAndCare() {
-		return faceAndCare;
-	}
-
-	public void setFaceAndCare(FaceAndCare faceAndCare) {
-		this.faceAndCare = faceAndCare;
-	}
-	
-	
+		public void setPrice(double price) {
+			this.price = price;
+		}
+		    	    
 
 }

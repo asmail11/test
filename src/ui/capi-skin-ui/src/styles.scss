@@ -1,12 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
-body { margin: 0;  font-family: 'Oswald', sans-serif; }
+body { margin: 0 i !important;  font-family: 'Oswald', sans-serif; }
 @import "~bootstrap/dist/css/bootstrap.css";
 mat-card-title,
 mat-card-subtitle {
   font-family: 'Oswald', sans-serif;
 }
 .form-content {
-  margin: auto; width: 100%; border: 4px solid #3f51b5;
+  margin: auto; width: 170%; border: 10px solid #2c3e50; max-width: 170%;
+  border-radius: 5px;
+}
+.auth-content {
+  margin: auto; width: 150%; border: 2px solid #2c3e50; max-width: 150%;
+  border-radius: 5px;
+}
+.mat-dialog-container {
+  display: contents !important;
+}
+.mat-toolbar {
+  margin: 0 !important;
+  position: absolute;
+  right: 40%;
+  top: 80px;
+  .mat-simple-snackbar-action {
+    color: #f39c12 !important;
+}
+}
+.mat-mini-fab.mat-warn,
+.mat-mini-fab.mat-accent {
+  background-color: #ecf0f1;
+  color: #e74c3c;
+}
+.description {
+background: #fff;
+padding: 15px;
+border-radius: 5px;
+color: #737373;
+}
+
+@media screen and (max-width: 600px) {
+  mat-card-actions {
+   text-align: center;
+  }
+}
+@media screen and (max-width: 600px) {
+  mat-card-actions button {
+   margin-top: 10px;
+  }
+}
+@media screen and (max-width: 800px) {
+  mat-card-actions {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 800px) {
+  mat-card-actions button {
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .form-content {
+    width: 280px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .auth-content {
+    width: 380px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .auth-content {
+    width: 300px;
+  }
+}
+.add-dialog-container {
+  width: 320px,
+}
+.details-dialog-container {
+width: 520px !important;
+}
+
+@media screen and (max-width: 800px) {
+  .mat-auth-container {
+    display: flex;
+  }
+}
+@media screen and (max-width: 600px) {
+  .mat-auth-container  {
+    display: flex;
+  }
 }

@@ -1,0 +1,4 @@
+#hideMe {
+  animation: css 0s 5s forwards;
+}
+@keyframes css  { to { visibility: hidden; } }

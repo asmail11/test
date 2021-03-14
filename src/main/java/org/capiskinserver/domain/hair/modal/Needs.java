@@ -4,13 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import org.capiskinserver.util.PersistableElement;
 
@@ -23,11 +20,6 @@ public class Needs extends PersistableElement {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@NotBlank
-	@Size(min = 3, max = 50)
-	@Column(unique = true)
-	private String name;
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "need", orphanRemoval = true)
 	private List<BaseProduct> baseProducts;
 
@@ -39,19 +31,10 @@ public class Needs extends PersistableElement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Needs(String name, List<BaseProduct> baseProducts, Characteristic characteristic) {
+	public Needs(List<BaseProduct> baseProducts, Characteristic characteristic) {
 		super();
-		this.name = name;
 		this.baseProducts = baseProducts;
 		this.characteristic = characteristic;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public Characteristic getCharacteristic() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.capiskinserver.application.hair.dto.BaseProductDto;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public interface BaseProductManagerService {
@@ -17,4 +18,6 @@ public interface BaseProductManagerService {
 	List<BaseProductDto> finBaseProductForNeeds(long idNeeds);
 	
 	void deleteBaseProduct(long idBaseProduct);
+	
+	boolean baseProductNameExists(@PathVariable String checkedName); 
 }

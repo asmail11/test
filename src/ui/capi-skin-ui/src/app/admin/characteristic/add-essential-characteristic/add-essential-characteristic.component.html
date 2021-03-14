@@ -1,0 +1,31 @@
+<div class="form-content" style="width: 400px;">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Add a new essential </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <br />
+        <mat-progress-bar mode="indeterminate" *ngIf="progressBar"></mat-progress-bar>
+        <br />
+        <form #registerForm="ngForm">
+  
+          <mat-form-field style="width: 100%;">
+            <mat-label>Please choose an essential</mat-label>
+            <select matNativeControl required (change)="onSelectProduct($event)">
+              <option selected disabled>essentials</option>
+              <option *ngFor="let s of products" [value]="s.id">{{s.name}}</option>
+            </select>
+          </mat-form-field><br>
+  
+          <button mat-raised-button color="primary"
+            (click)="addProductToType(idProduct)" style="width: 10em !important">
+            Save
+          </button>
+          <button mat-mini-fab mat-dialog-close color="warn" style="margin-left: 10px;">
+            <mat-icon>close</mat-icon>
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>

@@ -1,0 +1,170 @@
+<div class="row" *ngIf="user!=null">
+    <div class="col-lg-4 col-md-12 col-sm-12" style="margin-left: -15px;">
+
+        <mat-card style="background-color: #ffeaa7">
+            <mat-card-header>
+                <mat-card-title style="font-weight: bold; color: #2c3e50;">Categories</mat-card-title>
+                <mat-card-subtitle style="margin-top: -2px; color: #2d3436;">Total subjects</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+        </mat-card>
+        <mat-card style="padding-top: 0px;">
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item *ngFor="let category of bodyFaceHairs">
+                        <mat-icon mat-list-icon style="margin-bottom: 8px; margin-left: -15px; color: #8e8c8c;">
+                            arrow_forward_ios
+                        </mat-icon>
+                        <div mat-line id="categoryName" [routerLink]="['/tree-application/', category.id]">
+                            {{category.name}}</div>
+                        <div mat-line style="color: #6A6A6A;"
+                            style="margin-left: -15px; color: #8e8c8c; font-weight: lighter;"
+                            *ngIf="category.createdAt!=null">Created: {{category.createdAt | date}}
+                        </div>
+                        <div mat-line style="color: #6A6A6A;"
+                            style="margin-left: -15px; color: #8e8c8c; font-weight: lighter;"
+                            *ngIf="category.updatedAt!=null">Updated: {{category.updatedAt | date}}
+                        </div>
+                        <button (click)="editBodyFaceHaire(category.id)" title="Update category" mat-icon-button
+                            style="background: transparent;  margin-right: 15px;" title="Update {{category.name}}"><i class="fas fa-edit"
+                                id="iconUpdate"></i></button>
+                        <button (click)="deleteBodyFaceHaire(category.id)" title="Delete category" mat-icon-button
+                            style="background: transparent;" title="Delete {{category.name}}"><i class="material-icons"
+                                id="iconDelete">close</i></button>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            <mat-card-actions id="btn-content">
+                <mat-card-header>
+                    <mat-card-title style="font-weight: bold; color: #2c3e50;">Add a new product</mat-card-title>
+                </mat-card-header>
+                <button mat-stroked-button color="primary" (click)="addActif(user.id)"><i class="fas fa-plus"></i> Add a new actif
+                    oil</button>
+                <button mat-stroked-button color="primary" (click)="addEssential(user.id)"><i class="fas fa-plus"></i> Add a new
+                    essential</button>
+                <button mat-stroked-button color="primary" (click)="addIngredent(user.id)"><i class="fas fa-plus"></i> Add a new
+                    ingredient</button>
+                <button color="primary" mat-stroked-button (click)="addBodyFaceHaire(user.id)"><i class="fas fa-plus"></i> Add a
+                    new category</button>
+            </mat-card-actions><br>
+        </mat-card>
+
+    </div>
+
+    <div class="col-lg-8 col-md-12 col-sm-12"><br><br>
+        <mat-card style="background-color: #d2dae2;">
+            <mat-card-header>
+                <mat-card-title style="font-weight: bold">Welcome <strong
+                        style="color: #c0392b; text-decoration: underline;">{{username}}</strong> to dashboard
+                </mat-card-title>
+                <mat-card-subtitle style="margin-top: -2px;">Total products</mat-card-subtitle>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+        </mat-card>
+        <mat-card style="background-color: #ecf0f1;">
+            <mat-card-content>
+                <div id="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 link-class">
+                            <mat-card style="background-color: #3498db" [routerLink]="['/dashboard/display-actifs']"
+                                title="More details">
+                                <mat-card-header>
+                                    <mat-card-title *ngIf="actifsLength>0">
+                                        <button mat-mini-fab disabled style="color: #ecf0f1">
+                                            {{actifsLength}}
+                                        </button>
+                                    </mat-card-title>
+                                    <mat-card-title *ngIf="actifsLength==0">
+                                        <button mat-mini-fab disabled style="color: #ecf0f1">
+                                            0
+                                        </button>
+                                    </mat-card-title>
+                                    <mat-card-subtitle style="font-weight: bold">Actifs</mat-card-subtitle>
+                                    <mat-card-subtitle style="margin-top: -14px;">Total actifs</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-divider></mat-divider>
+                                <mat-card-actions>
+                                    <i class="fas fa-bong"></i>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 link-class">
+                            <mat-card style="background-color: #e67e22" [routerLink]="['/dashboard/display-essential']"
+                                title="More details">
+                                <mat-card-header>
+                                    <mat-card-title *ngIf="essentailLength>0">
+                                        <button mat-mini-fab disabled style="color: #ecf0f1">
+                                            {{essentailLength}}
+                                        </button>
+                                    </mat-card-title>
+                                    <mat-card-title *ngIf="essentailLength==0">
+                                        <button mat-mini-fab disabled style="color: #ecf0f1">
+                                            0
+                                        </button>
+                                    </mat-card-title>
+                                    <mat-card-subtitle style="font-weight: bold">Essentails</mat-card-subtitle>
+                                    <mat-card-subtitle style="margin-top: -14px;">Total essentails</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-divider></mat-divider>
+                                <mat-card-actions>
+                                    <i class="fas fa-drum-steelpan"></i>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 link-class">
+                            <mat-card style="background-color: #8e44ad" [routerLink]="['/dashboard/display-ingredient']"
+                                title="More details">
+                                <mat-card-header>
+                                    <mat-card-title *ngIf="ingredientsLength>0">
+                                        <button mat-mini-fab disabled style="color: #ecf0f1">
+                                            {{ingredientsLength}}
+                                        </button>
+                                    </mat-card-title>
+                                    <mat-card-title *ngIf="ingredientsLength==0">
+                                        <button mat-mini-fab disabled style="color: #ecf0f1">
+                                            0
+                                        </button>
+                                    </mat-card-title>
+                                    <mat-card-subtitle style="font-weight: bold">Ingredients</mat-card-subtitle>
+                                    <mat-card-subtitle style="margin-top: -14px;">Total ingredients</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-divider></mat-divider>
+                                <mat-card-actions>
+                                    <i class="fab fa-creative-commons-remix"></i>
+                                </mat-card-actions>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <div style="margin: 20px 0;">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf='user==null;'>
+    <mat-card style="margin: 40px;">
+        <mat-card-header>
+            <mat-card-title>
+                <h2>Errors</h2>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="alert alert-warning" role="alert">
+                <h2> You have to authentification to access this page !!</h2>
+            </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-flat-button color="primary" (click)="singin()"
+                style="margin-left: 20px; margin-right: 10px;">Sing in</button>
+            <button mat-flat-button color="accent" (click)="signup()">Sing up</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" style="margin-left: -12px;" id="tree">
+
+    <mat-card style="background-color: #f8c291">
+      <mat-card-header>
+        <mat-card-title style="font-weight: bold">Category: {{bodyFaceHairDto.name}}</mat-card-title>
+        <mat-card-subtitle style="margin-top: -2px;" *ngIf="bodyFaceHairDto.createdAt!=null">Created at:
+          {{bodyFaceHairDto.createdAt | date}}</mat-card-subtitle>
+        <mat-card-subtitle style="margin-top: -2px;" *ngIf="bodyFaceHairDto.updatedAt!=null">Updated at:
+          {{bodyFaceHairDto.updatedAt | date}}</mat-card-subtitle>
+
+      </mat-card-header>
+      <mat-divider></mat-divider>
+    </mat-card>
+    <mat-card>
+      <mat-card-content>
+        <mat-list-item>
+          <i class="fas fa-check-double" style="margin: 0 15px 0 10px;"></i>
+          <a class="mat-list-item" (click)="setDocTitle('Capi skin application display actifs')"
+            [routerLink]="['/tree-application/' +bodyFaceHairDto.id+ '/display-actifs/']"
+            routerLinkActive="router-link-active">Actifs oil</a>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><br>
+          <i class="fas fa-check-double" style="margin: 0 15px 0 10px;"></i>
+          <a class="mat-list-item" (click)="setDocTitle('Capi skin application display essentials')"
+            [routerLink]="['/tree-application/' +bodyFaceHairDto.id+ '/display-essentials/']"
+            routerLinkActive="router-link-active">Essentials oil</a>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><br>
+          <i class="fas fa-check-double" style="margin: 0 15px 0 10px;"></i>
+          <a class="mat-list-item" (click)="setDocTitle('Capi skin application display ingredients')"
+            [routerLink]="['/tree-application/' +bodyFaceHairDto.id+ '/display-ingredients/']"
+            routerLinkActive="router-link-active">Ingredients</a>
+        </mat-list-item>
+        <mat-divider></mat-divider><br>
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodeToggle>
+
+            <mat-basic-chip class="checklist-leaf-node root" [routerLink]="[node.routerLink]"
+              routerLinkActive="linkActive" (click)="setDocTitle(node.routerLink)">
+              <a title="{{node.title}}">
+                <i [ngClass]="node.clazz" style="margin-right: 5px; color: #666a6c;"></i>
+                {{node.name}}
+              </a>
+            </mat-basic-chip>
+          </mat-tree-node>
+
+          <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+            <span [attr.aria-label]="'toggle ' + node.filename" id="chevronIcon" matTreeNodeToggle
+              style="background: transparent;">
+              <mat-icon class="mat-icon-rtl-mirror" id="mat-icon-plus">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </span>
+            <mat-basic-chip class="root" [routerLink]="[node.routerLink]" routerLinkActive="linkActive"
+              (click)="setDocTitle(node.routerLink)">
+
+              <a title="{{node.title}}">
+                <i [ngClass]="node.clazz" style="margin-right: 5px;  color: #666a6c;"></i>
+                {{node.name}}
+              </a>
+
+            </mat-basic-chip>
+          </mat-tree-node>
+        </mat-tree>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+
+  <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12" style="margin-top: 40px;">
+    <router-outlet></router-outlet>
+  </div>
+</div>

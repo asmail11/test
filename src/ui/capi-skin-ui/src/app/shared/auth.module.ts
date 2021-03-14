@@ -3,25 +3,25 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/cor
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from './material-module';
-import { SigninComponent } from '../auth/signin/signin.component';
-import { SignupComponent } from '../auth/signup/signup.component';
-
+import { HttpClientModule } from '@angular/common/http';
+import { SingupComponent } from '../auth/singup/singup.component';
+import { SinginComponent } from '../auth/singin/singin.component';
 
 @NgModule({
   declarations: [
-    SignupComponent,
-    SigninComponent,
+    SinginComponent,
+    SingupComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   entryComponents: [
-    SignupComponent,
-    SigninComponent,
+
   ],
   providers: [],
   bootstrap: [],

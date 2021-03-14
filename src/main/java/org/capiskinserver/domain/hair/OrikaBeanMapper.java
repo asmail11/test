@@ -6,6 +6,7 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
 import ma.glasnost.orika.impl.generator.JavassistCompilerStrategy;
 import ma.glasnost.orika.unenhance.HibernateUnenhanceStrategy;
 import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -27,6 +28,9 @@ public class OrikaBeanMapper extends ConfigurableMapper {
     this.factory = factory;     
 
   }
+ private void registerClassMap(final Class<?> a, final Class<?> b) {
+     this.factory.classMap(a, b).mapNulls(true).mapNullsInReverse(true).byDefault().register();
+ }
   
  /**
  * {@inheritDoc}

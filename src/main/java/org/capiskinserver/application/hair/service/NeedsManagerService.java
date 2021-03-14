@@ -18,4 +18,5 @@ public interface NeedsManagerService {
 	
 	List<NeedsDto> fiNeedsForCharacteristic(long idCharacteristic);
 
+	boolean needsNameExists(String checkedName);
 }

@@ -1,0 +1,276 @@
+<mat-card id="cardContent">
+    <mat-card-header>
+      <mat-card-title>Complate your account</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="accountFormGroup">
+          <ng-template (click)="refreshPage()" matStepLabel>Information</ng-template>
+  
+          <mat-card *ngIf="accountValue" style="border: 1px solid #ced4da;">
+            <mat-card-subtitle>Voici la dernière adresse enregistrée sur Capi-Skin</mat-card-subtitle>
+            <div>
+              <strong>{{accountValue.name}}</strong>
+              <div>{{accountValue.address}}</div>
+              <div>{{accountValue.city}} - {{accountValue.codePostale}}</div>
+              <div><i class="fas fa-mobile-alt" style="margin-right: 10px;"></i> <span>{{accountValue.phone}}</span></div>
+              <button type="button" class="btn btn-link" (click)="updateAccount(idUser)">Modifier cette adress</button>
+              <button mat-mini-fab (click)="deleteAccount(userDto.id, accountValue.id)" color="accent" style="margin-left: 10px;">
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </mat-card>
+  
+  
+          <form (ngSubmit)="registerForm.form.valid" #registerForm="ngForm" novalidate *ngIf="!accountValue">
+            <mat-card style="width: 80%; border: 1px solid #ced4da;" id="account">
+              <mat-card-content>
+                <div class="row g-3">
+                  <div class="col-auto">
+                    <input type="text" class="form-control" placeholder="Fullname" name="name"
+                      [(ngModel)]="accountDto.name" required minlength="4" #name="ngModel">
+                    <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger"
+                      style="margin-top: 10px">
+                      <div *ngIf="name.errors.required">
+                        Name is required.
+                      </div>
+                      <div *ngIf="name.errors.minlength">
+                        Name must be at least 3 characters long.
+                      </div>
+                      <div *ngIf="name.errors.forbiddenName">
+                        Name cannot be Bob.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <input type="text" class="form-control" placeholder="Address" name="address"
+                      [(ngModel)]="accountDto.address" required minlength="4" #address="ngModel">
+                    <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger"
+                      style="margin-top: 10px">
+                      <div *ngIf="address.errors.required">
+                        Address is required.
+                      </div>
+                      <div *ngIf="address.errors.minlength">
+                        Address must be at least 3 characters long.
+                      </div>
+                      <div *ngIf="address.errors.forbiddenName">
+                        Address cannot be Bob.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <input type="text" class="form-control" placeholder="City" name="city" [(ngModel)]="accountDto.city"
+                      required minlength="2" #city="ngModel">
+                    <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger"
+                      style="margin-top: 10px">
+                      <div *ngIf="city.errors.required">
+                        City is required.
+                      </div>
+                      <div *ngIf="city.errors.minlength">
+                        City must be at least 2 characters long.
+                      </div>
+                      <div *ngIf="city.errors.forbiddenName">
+                        City cannot be Bob.
+                      </div>
+                    </div>
+                  </div>
+                </div><br>
+                <div class="row g-3">
+                  <div class="col-auto">
+                    <input type="text" class="form-control" placeholder="Code postale" name="codePostale"
+                      [(ngModel)]="accountDto.codePostale" required minlength="5" maxlength="5" #codePostale="ngModel">
+                    <div *ngIf="codePostale.invalid && (codePostale.dirty || codePostale.touched)"
+                      class="alert alert-danger" style="margin-top: 10px">
+                      <div *ngIf="codePostale.errors.required">
+                        Code postale is required.
+                      </div>
+                      <div *ngIf="codePostale.errors.minlength">
+                        Code postale must be at least 2 characters long.
+                      </div>
+                      <div *ngIf="codePostale.errors.forbiddenName">
+                        Code postale cannot be Bob.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <input type="tel" class="form-control" placeholder="Phone" name="phone" [(ngModel)]="accountDto.phone"
+                      required maxlength="10" minlength="10" #phone="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$">
+                    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger"
+                      style="margin-top: 10px">
+                      <div *ngIf="phone.errors.required">
+                        Phone is required.
+                      </div>
+                      <div *ngIf="phone.errors && phone.errors.pattern">
+                        Phone is invalid
+                      </div>
+                      <div *ngIf="phone.errors.forbiddenName">
+                        Phone cannot be Bob.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-auto" id="gender">
+                    <mat-radio-group #genderControl="ngModel" [(ngModel)]="accountDto.gender" name="gender"
+                      (ngModelChange)="setGender()" required>
+                      <mat-radio-button value="female">Female</mat-radio-button>
+                      <mat-radio-button value="male" style="margin-left: 10px">Male</mat-radio-button>
+                    </mat-radio-group><br>
+                    <div *ngIf="genderControl.invalid && (genderControl.dirty || genderControl.touched)"
+                      class="alert alert-danger" style="margin-top: 10px">
+                      <div *ngIf="genderControl.errors.required">
+                        Please choose your gender.
+                      </div>
+                    </div>
+                  </div>
+                </div><br>
+                <mat-card class="result" style="border: 1px solid #ced4da;">
+                  <mat-card-content>
+                    <h2 class="example-h2">Accept condition</h2>
+  
+                    <div class="row">
+                      <div class="col-lg-1" style="padding-right: 0 !important;">
+                        <section>
+                          <mat-checkbox [checked]="accountDto.conditionAccept" class="checkbox"
+                            (change)="toggleAcceptCondition($event)" required></mat-checkbox>
+                        </section>
+                      </div>
+                      <div class="col-lg-11" style="padding-left: 0 !important">
+                        <p>
+                          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A
+                          small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                          bred for hunting.
+                        </p>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card><br>
+  
+                <div>
+                  <button mat-raised-button matStepperNext color="primary" (click)="addAccount(idUser)"
+                    [disabled]="name.invalid || address.invalid || city.invalid || codePostale.invalid 
+                    || phone.invalid || registerForm.invalid || genderControl.invalid || !validateConditionAccept">Next</button>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="paymentFormGroup">
+          <ng-template matStepLabel>Payment</ng-template>
+          <mat-card style="width: 80%; border: 1px solid #ced4da;" id="payemnt">
+            <mat-card-subtitle>Validez et payez votre commande </mat-card-subtitle>
+            <div id="icon-credit">
+              <i class="fab fa-cc-visa" style="color: darkblue; margin-left: 10px;"></i>
+              <i class="fab fa-cc-mastercard" style="margin: 0 10px; color: #e67e22;"></i>
+              <i class="fab fa-cc-paypal" style="color: #2c3e50;"></i>
+            </div><br>
+            <mat-card style="border: 1px solid #ced4da;" *ngIf="paymentValue!=null">
+               <h2>Your carte number</h2>
+               <input class="form-control" type="text" placeholder="{{cartNumber}}" aria-label="Disabled input example" disabled readonly>
+               <br>
+               <button type="button" class="btn btn-link" (click)="updatePayment(userDto.id)">Modifier votre numéro</button>
+               <button mat-mini-fab (click)="deletePayment(userDto.id, paymentValue.id)" color="accent" style="margin-left: 10px;">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-card>
+            <mat-card style="border: 1px solid #ced4da;" *ngIf="paymentValue==null">
+              <form #pyemntForm="ngForm">
+                <div class="input-group mb-3">
+                  <input #nameOnCard="ngModel" minlength="2" [(ngModel)]="paymentDto.nameOnCard" name="nameOnCard"
+                    style="border-left: 1px solid #ced4da !important;" type="text" class="form-control"
+                    placeholder="Totulaire de la carte" required>
+                </div>
+                <br>
+                <div *ngIf="nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)" class="alert alert-danger"
+                  style="margin-top: 10px">
+                  <div *ngIf="nameOnCard.errors.required">
+                    Name is required.
+                  </div>
+                  <div *ngIf="nameOnCard.errors.minlength">
+                    Name must be at least 2 characters long.
+                  </div>
+                  <div *ngIf="nameOnCard.errors.forbiddenName">
+                    Cart number cannot be Bob.
+                  </div>
+                </div>
+                <div class="alert alert-danger" *ngIf="isAddPaymentFailed">
+                  Failed! <strong> {{paymentDto.cartNumber}} </strong> is an valid credit card number
+                </div>
+                <div *ngIf="cartNumber.invalid && (cartNumber.dirty || cartNumber.touched)" class="alert alert-danger"
+                  style="margin-top: 10px">
+                  <div *ngIf="cartNumber.errors.required">
+                    Cart number is required.
+                  </div>
+                  <div *ngIf="cartNumber.errors.minlength">
+                    Cart number must be at least 10 characters long.
+                  </div>
+                  <div *ngIf="cartNumber.errors.maxLength">
+                    Cart number must be More then 10 characters long.
+                  </div>
+                  <div *ngIf="cartNumber.errors.forbiddenName">
+                    Cart number cannot be Bob.
+                  </div>
+                </div>
+                <div *ngIf="expiry.invalid && (expiry.dirty || expiry.touched)" class="alert alert-danger"
+                  style="margin-top: 10px">
+                  <div *ngIf="expiry.errors.required">
+                    Expiration is required.
+                  </div>
+                  <div *ngIf="expiry.errors.minlength">
+                    Expiration must be 4 characters.
+                  </div>
+                  <div *ngIf="expiry.errors.forbiddenName">
+                    Expiration cannot be Bob.
+                  </div>
+                </div>
+                <div *ngIf="cryptogram.invalid && (cryptogram.dirty || cryptogram.touched)" class="alert alert-danger"
+                  style="margin-top: 10px">
+                  <div *ngIf="cryptogram.errors.required">
+                    Cryptogram is required.
+                  </div>
+                  <div *ngIf="cryptogram.errors.minlength">
+                    Cryptogram must be 3 characters.
+                  </div>
+                  <div *ngIf="cryptogram.errors.forbiddenName">
+                    Cryptogram cannot be Bob.
+                  </div>
+                </div>
+                <div class="input-group mb-3" style="margin-bottom: 0px !important;">
+                  <button style="border-bottom-color: #fff !important;" class="btn btn-outline-secondary" type="button"
+                    id="button-addon1"><i class="far fa-credit-card"></i></button>
+                  <input #cartNumber="ngModel" minlength="10" maxLength="16" [(ngModel)]="paymentDto.cartNumber"
+                    name="cartNumber" style="border-bottom-color: #fff;" type="text" class="form-control"
+                    placeholder="Numéro de la carte" required>
+                </div>
+                <div class="row">
+                  <div class="col-6" style="padding-right: 0 !important;">
+                    <div class="input-group mb-3">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i
+                          class="fas fa-calendar-check"></i></button>
+                      <input minlength="4" maxLength="4" #expiry="ngModel" [(ngModel)]="paymentDto.expiry" name="expiry"
+                        type="time" class="form-control" placeholder="Date d'expiration" required>
+                    </div>
+                  </div>
+                  <div class="col-6" style="padding-left: 0 !important;">
+                    <div class="input-group mb-3">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i
+                          class="fas fa-lock"></i></button>
+                      <input minlength="3" maxLength="3" #cryptogram="ngModel" [(ngModel)]="paymentDto.cryptogram"
+                        name="cryptogram" type="text" class="form-control" placeholder="Cryptogramme" required>
+                      <button (click)="cryptogrammeInfo()" class="btn btn-secondary" type="button"
+                        style="background-color: #FFF; border-radius: 0 !important; border-color: #ced4da !important;">
+                        <i class="fas fa-info-circle" style="color: #6c757d;"></i></button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div>
+                <button mat-raised-button color="primary" (click)="addPayment(idUser)"
+                  [disabled]="nameOnCard.invalid || cartNumber.invalid || expiry.invalid || cryptogram.invalid">Validez</button>
+                  <button mat-raised-button color="accent" style="margin-left: 10px;">Annuler</button>
+              </div>
+            </mat-card>
+          </mat-card>
+        </mat-step>
+      </mat-horizontal-stepper>
+  
+    </mat-card-content>
+  </mat-card><br>

@@ -3,7 +3,6 @@ package org.capiskinserver.domain.hair.modal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -11,8 +10,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 import org.capiskinserver.util.PersistableElement;
 
@@ -24,13 +21,6 @@ public class IngredientProduct extends PersistableElement {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	@NotBlank
-	@Size(min = 3, max = 50)
-	@Column(unique =  true)
-	private String name;
-	
-	private String photo;
 	
 	private int millilimter;
 	
@@ -50,32 +40,13 @@ public class IngredientProduct extends PersistableElement {
 		// TODO Auto-generated constructor stub
 	}
 
-	public IngredientProduct(String name, String photo, int millilimter, double price, BaseProduct baseProduct,
+	public IngredientProduct(int millilimter, double price, BaseProduct baseProduct,
 			List<FinalProduct> finalProducts) {
 		super();
-		this.name = name;
-		this.photo = photo;
 		this.millilimter = millilimter;
 		this.price = price;
 		this.baseProduct = baseProduct;
 		this.finalProducts = finalProducts;
-	}
-
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
 	}
 
 	public int getMillilimter() {

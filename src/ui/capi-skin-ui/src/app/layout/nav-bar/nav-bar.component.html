@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" [routerLink]="['/home']">Brand</a>
+        <button style="background: aliceblue;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" (click)="setDocTitle('Capi skin welcome to home')" [routerLink]="['/home']">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="setDocTitle('Capi skin welcome admin to dashboard')" [routerLink]="['/dashboard']" *ngIf="userDto.admin==true">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li *ngFor="let cat of bodyFaceHairs"><a class="dropdown-item">{{cat.name}}</a>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" *ngIf="!showModeratorBoard && !showAdminBoard" (click)="signup()">Sing up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" *ngIf="!showModeratorBoard && !showAdminBoard" (click)="signin()">Sing in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="setDocTitle('Capi skin welcome to admin profile')" *ngIf="userDto.admin==true" [routerLink]="['/admin-profile']">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="setDocTitle('Capi skin welcome to user profile')"  *ngIf="userDto.admin==false" [routerLink]="['/user-profile/', userDto.id]">User</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

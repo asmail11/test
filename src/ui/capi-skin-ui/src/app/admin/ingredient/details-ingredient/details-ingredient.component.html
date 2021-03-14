@@ -1,0 +1,17 @@
+<mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{productDto.name}}</mat-card-title>
+      <mat-card-subtitle *ngIf="productDto.createdAt!=null">Created at: {{productDto.createdAt|date}}</mat-card-subtitle>
+      <mat-card-subtitle *ngIf="productDto.updatedAt!=null">Updated at: {{productDto.updatedAt|date}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <img style="height: 400px; max-height: 400px;" mat-card-image src="{{productDto.photo}}" alt="{{productDto.name}}">
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <p class="description">
+        <strong style="color: #c0392b; font-weight: bolder;">Price: {{productDto.price}} £</strong><br><br>
+        {{productDto.description}}
+      </p>
+    </mat-card-content>
+  </mat-card>
+  

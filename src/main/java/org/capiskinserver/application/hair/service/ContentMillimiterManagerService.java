@@ -15,5 +15,6 @@ public interface ContentMillimiterManagerService {
 	void deleteContentMillimiter(long idContentMillimiter, long idFinalProduct);
 	
 	ContentMillimiterDto findContentMillimiterForProduct(long idFinalProduct);
+	
 
 }

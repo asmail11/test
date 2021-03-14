@@ -1,0 +1,79 @@
+<div class="auth-content">
+<div *ngIf="isLoginFailed" class="alert alert-danger">
+  <p> Username or password not correct </p>
+</div>
+<mat-card>
+  <mat-card-header style=" background: #d35400; padding: 15px 10px 6px; color: #ffffff; border-top-left-radius: 30px; ">
+    <mat-card-title>
+      <mat-icon>how_to_reg</mat-icon>
+      <span style="margin-left: 8px">Signin</span>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content style="border: 4px solid #d35400">
+    <mat-list>
+      <mat-list-item>Please enter username and password</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <mat-progress-bar mode="indeterminate" *ngIf="showSpinner">
+    </mat-progress-bar>
+
+    <form style="padding: 15px;" (ngSubmit)="formLogin.form.valid && onSubmit() " #formLogin="ngForm" novalidate>
+      <mat-form-field style="width: 100%">
+        <mat-label>Enter username</mat-label>
+        <input (keyup)="hasError()" type="text" matInput name="username" minlength="4" maxlength="20" [(ngModel)]="form.username" #username="ngModel" required/>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger" style="margin-top: 10px">
+          <div *ngIf="username.errors.required">
+            Username is required.
+          </div>
+          <div *ngIf="username.errors.minlength">
+            Username must be at least 4 characters long.
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            Username must be at most 20 characters
+          </div>
+          <div *ngIf="username.errors.forbiddenName">
+            Username cannot be Bob.
+          </div>
+        </div>
+      </mat-form-field>
+      <br/>
+
+      <mat-form-field style="width: 100%">
+        <mat-label>Enter password</mat-label>
+        <input (keyup)="hasError()" type="password" matInput name="password" minlength="6" maxlength="20" [(ngModel)]="form.password" #password="ngModel" required/>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger" style="margin-top: 10px">
+          <div *ngIf="password.errors.required">
+            Password is required.
+          </div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 4 characters long.
+          </div>
+          <div *ngIf="password.errors.maxlength">
+            Password must be at most 20 characters
+          </div>
+          <div *ngIf="password.errors.forbiddenName">
+            Password cannot be Bob.
+          </div>
+        </div>
+      </mat-form-field>
+      <br/>
+
+      <button mat-raised-button [disabled]="username.invalid || password.invalid" color="primary" type="submit"> Login<mat-icon>exit_to_app</mat-icon> </button>
+    </form>
+
+  </mat-card-content>
+
+  <mat-card-actions>
+    <p style="text-align: center;">I don't have an account
+      <button mat-button mat-dialog-close color="primary" (click)="signup()">Singup <mat-icon> supervisor_account
+        </mat-icon>
+      </button>
+      <button mat-dialog-close title="Update category" mat-mini-fab
+      style="background: transparent;  margin-right: 15px; color: #d35400;">
+      <i class="material-icons">close</i>
+     </button>
+    </p>
+  </mat-card-actions>
+
+</mat-card>
+</div>

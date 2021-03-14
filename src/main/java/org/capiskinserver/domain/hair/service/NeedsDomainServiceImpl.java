@@ -34,6 +34,7 @@ public class NeedsDomainServiceImpl implements NeedsDomainService {
 			existNeeds.setCreatedAt(null);
 			existNeeds.setUpdatedAt(new Date());
 			existNeeds.setName(needs.getName());
+			existNeeds.setPhoto(needs.getPhoto());
 			existNeeds.setDescription(needs.getDescription());
 			return needsDao.save(existNeeds);
 		}

@@ -2,90 +2,59 @@ package org.capiskinserver.application.hair.dto;
 
 import java.util.List;
 
-
 public class CharacteristicDto extends PersistableElementDto {
 	
-	private String type;
-
-	private String nature;
-
-	private String texture;
-
-	private String treatment;
-	
-	private String visual;
-
-	private String problem;
-
-	private String photo;
-
 	private List<NeedsDto> needs;
+	
 
-	public String getType() {
-		return type;
-	}
+	private List<EssentialOilDto> essentialOils;
 
-	public void setType(String type) {
-		this.type = type;
-	}
+	private List<ActifDto> actifs;
 
-	public String getNature() {
-		return nature;
-	}
+	private List<IngredientDto> products;
 
-	public void setNature(String nature) {
-		this.nature = nature;
-	}
-
-	public String getTexture() {
-		return texture;
-	}
-
-	public void setTexture(String texture) {
-		this.texture = texture;
-	}
-
-	public String getTreatment() {
-		return treatment;
-	}
-
-	public void setTreatment(String treatment) {
-		this.treatment = treatment;
-	}
-
-	public String getVisual() {
-		return visual;
-	}
-
-	public void setVisual(String visual) {
-		this.visual = visual;
-	}
-
-	public String getProblem() {
-		return problem;
-	}
-
-	public void setProblem(String problem) {
-		this.problem = problem;
-	}
-
-	public String getPhoto() {
-		return photo;
-	}
-
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
+	private List<CharacteristicDto> characteristics;
 
 	public List<NeedsDto> getNeeds() {
 		return needs;
 	}
 
+
 	public void setNeeds(List<NeedsDto> needs) {
 		this.needs = needs;
 	}
 	
-	
+	public List<EssentialOilDto> getEssentialOils() {
+		return essentialOils;
+	}
+
+	public void setEssentialOils(List<EssentialOilDto> essentialOils) {
+		this.essentialOils = essentialOils;
+	}
+
+	public List<ActifDto> getActifs() {
+		return actifs;
+	}
+
+	public void setActifs(List<ActifDto> actifs) {
+		this.actifs = actifs;
+	}
+
+	public List<IngredientDto> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<IngredientDto> products) {
+		this.products = products;
+	}
+
+	public List<CharacteristicDto> getCharacteristics() {
+		return characteristics;
+	}
+
+	public void setCharacteristics(List<CharacteristicDto> characteristics) {
+		this.characteristics = characteristics;
+	}
 	
 
 }

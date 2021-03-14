@@ -69,4 +69,9 @@ public class NeedsManagerServiceImpl implements NeedsManagerService {
 		return orikaBeanMapper.convertListDTO(needs, NeedsDto.class);
 	}
 
+	@Override
+	public boolean needsNameExists(String checkedName) {
+		return needsDao.existsByName(checkedName);
+	}
+
 }

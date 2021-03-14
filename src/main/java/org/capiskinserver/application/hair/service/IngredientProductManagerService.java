@@ -15,5 +15,7 @@ public interface IngredientProductManagerService {
 	void deleteIngredientProduct(long idIngredientProduct, long idBase);
 	
 	IngredientProductDto findIngredientProductForBaseProduct(long idBase);
+	
+	boolean ingredientProductNameExists(String checkedName);
 
 }

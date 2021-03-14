@@ -1,0 +1,16 @@
+
+<div id="overlay"></div>
+<div id="text">
+  <h2 mat-dialog-title>
+    {{title}}
+  </h2>
+
+  <div mat-dialog-content>
+    <p>{{message}}</p>
+  </div>
+
+  <div mat-dialog-actions>
+    <a class="btn btnNo" (click)="onDismiss()" title="CANCEL"> <i class="fas fa-times"></i></a>
+    <a class="btn btnYes" (click)="onConfirm()" title="DELETE"> <i class="fas fa-check"></i></a>
+  </div>
+</div>

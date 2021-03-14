@@ -1,1 +1,52 @@
-<p>display-ingredient works!</p>
+<mat-card style="background-color: #f1f2f6;">
+    <mat-card-header>
+      <mat-card-title>
+        Ingredients
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+  
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Details</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pro of products | paginate:{id:'displayIngredient', itemsPerPage: 2, currentPage:displayIngredient}">
+            <td style="font-weight: bold; color: #2c3e50;">{{pro.name}}</td>
+            <td>
+              <button mat-mini-fab disabled style="color: #c23616; font-weight: bold;">
+              {{pro.price}}£
+            </button>
+            </td>
+            <td>
+              <button mat-icon-button>
+              <span class="material-icons details" (click)="detailProduct(pro.id)">
+                visibility
+              </span>
+              </button>
+            </td>
+            <td><button mat-icon-button>
+              <span class="material-icons edit" (click)="editProduct(pro.id)">
+              edit
+            </span>
+          </button></td>
+            <td><button mat-icon-button>
+              <span class="material-icons delete" (click)="deleteProduct(pro.id)">
+              delete_forever
+            </span>
+          </button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-footer bg-transparent border-danger">
+        <pagination-controls (pageChange)="displayIngredient=$event" id="displayIngredient"></pagination-controls>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

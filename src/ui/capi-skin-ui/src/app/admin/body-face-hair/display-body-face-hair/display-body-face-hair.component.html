@@ -1,0 +1,37 @@
+<mat-card style="background-color: #f1f2f6;">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <img class="img-thumbnail" style="height: 300px; max-height: 400px;" mat-card-image src="{{category.photo}}" alt="{{category.name}}">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+          <mat-card-header>
+            <mat-card-title>
+              Category: {{category.name}}
+            </mat-card-title>
+            <mat-card-subtitle style="font-weight: bold" *ngIf="category.createdAt!=null">Created at: {{category.createdAt | date}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="category.updatedAt!=null">Updated at: {{category.updatedAt | date}}</mat-card-subtitle>
+          </mat-card-header>
+          <p class="description">
+            {{category.description}}
+           </p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button mat-stroked-button color="accent" (click)="addType(category.id)">Add a new type <span
+        class="material-icons">
+        add
+      </span></button>
+      <button mat-stroked-button color="primary" (click)="addBodyFaceHaire(category.id)">Update {{category.name}} <span
+        class="material-icons">
+        edit
+      </span></button>
+      <button mat-stroked-button color="warn" (click)="deleteBodyFaceHaire(category.id)">Delete {{category.name}} <span
+        class="material-icons">
+        edit
+      </span></button>
+    </mat-card-actions>
+  </mat-card>
+  

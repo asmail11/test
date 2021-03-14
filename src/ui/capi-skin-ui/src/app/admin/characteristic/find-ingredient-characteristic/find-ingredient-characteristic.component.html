@@ -1,0 +1,21 @@
+<mat-card style="background-color: #f1f2f6;">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <img class="img-thumbnail" style="height: 300px; max-height: 400px;" mat-card-image src="{{ingredientDto.photo}}" alt="{{ingredientDto.name}}">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+          <mat-card-header>
+            <mat-card-title>
+                Ingredient Oil: {{ingredientDto.name}}
+            </mat-card-title>
+            <mat-card-subtitle style="font-weight: bold" *ngIf="ingredientDto.createdAt!=null">Created at: {{ingredientDto.createdAt | date}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="ingredientDto.updatedAt!=null">Updated at: {{ingredientDto.updatedAt | date}}</mat-card-subtitle>
+          </mat-card-header>
+          <p class="description">
+            {{ingredientDto.description}}
+           </p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card><br><br>

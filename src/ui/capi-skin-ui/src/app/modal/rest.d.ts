@@ -1,34 +1,35 @@
 /* tslint:disable */
 
-export interface ActifDto extends PersistableElementDto {
+export interface AccountDto {
+  address: string;
+  city: string;
+  codePostale: string;
+  conditionAccept: string;
+  gender: string;
+  id: number;
   name: string;
+  phone: string;
 }
 
-export interface BaseProductDto extends PersistableElementDto {
-  name: string;
+export interface ActifDto extends PersistableElementDto {
   price: number;
 }
 
-export interface BodyAndHairDto extends PersistableElementDto {
-  faceAndCares: FaceAndCareDto[];
-  name: string;
+export interface BaseProductDto extends PersistableElementDto {
+  ingredientProduct: IngredientProductDto;
+  price: number;
 }
 
-export interface CategoryDto extends PersistableElementDto {
-  bodyAndHairs: BodyAndHairDto[];
-  characteristics: CharacteristicDto[];
-  name: string;
+export interface BodyFaceHairDto extends PersistableElementDto {
+  types: TypeDto[];
 }
 
 export interface CharacteristicDto extends PersistableElementDto {
-  nature: string;
+  actifs: ActifDto[];
+  characteristics: CharacteristicDto[];
+  essentialOils: EssentialOilDto[];
   needs: NeedsDto[];
-  photo: string;
-  problem: string;
-  texture: string;
-  treatment: string;
-  type: string;
-  visual: string;
+  products: IngredientDto[];
 }
 
 export interface CommandDto extends PersistableElementDto {
@@ -48,49 +49,21 @@ export interface ContentMillimiterDto extends PersistableElementDto {
 }
 
 export interface EssentialOilDto extends PersistableElementDto {
-  name: string;
-}
-
-export interface FaceAndCareDto extends PersistableElementDto {
-  ingredients: IngredientDto[];
-  name: string;
+  price: number;
 }
 
 export interface FinalProductDto extends PersistableElementDto {
   ingredientProducts: IngredientProductDto[];
 }
 
-export interface GrantedAuthority extends Serializable {
-  authority: string;
-}
-
 export interface IngredientDto extends PersistableElementDto {
-  name: string;
+  price: number;
 }
 
 export interface IngredientProductDto extends PersistableElementDto {
   finalProducts: FinalProductDto[];
   millilimter: number;
-  name: string;
-  photo: string;
   price: number;
-}
-
-export interface JwtResponseDto {
-  accessToken: string;
-  authorities: GrantedAuthority[];
-  email: string;
-  id: number;
-  name: string;
-  tokenType: string;
-  username: string;
-}
-
-export interface LoginFormDto {
-  email: string;
-  name: string;
-  password: string;
-  username: string;
 }
 
 export interface MailContactRequestDto {
@@ -116,59 +89,52 @@ export interface MailResponseDto {
 
 export interface NeedsDto extends PersistableElementDto {
   baseProducts: BaseProductDto[];
-  name: string;
+}
+
+export interface PaymentDto {
+  cartNumber: string;
+  cryptogram: number;
+  expiry: string;
+  id: number;
+  nameOnCard: string;
 }
 
 export interface PersistableElementDto {
   createdAt: Date;
   description: string;
   id: number;
+  name: string;
+  photo: string;
   updatedAt: Date;
 }
 
-export interface ResponseMessageDto {
-  message: string;
-}
-
-export interface Serializable {
-}
-
-export interface SignUpFormDto {
-  addresse: string;
-  admin: boolean;
-  email: string;
-  from: string;
+export interface RoleDto {
   id: number;
-  name: string;
+  name: RoleName;
+}
+
+export interface TypeDto extends PersistableElementDto {
+  characteristics: CharacteristicDto[];
+}
+
+export interface UserDto {
+  account: AccountDto;
+  admin: boolean;
+  bodyFaceHairs: BodyFaceHairDto[];
+  commands: CommandDto[];
+  createdAt: Date;
+  email: string;
+  id: number;
   password: string;
-  phone: string;
-  repassword: string;
-  role: string[];
-  subject: string;
-  to: string;
+  payment: PaymentDto;
+  token: string;
+  type: string;
+  roles: RoleDto[];
   username: string;
 }
 
-export interface VegetableOilDto extends PersistableElementDto {
-  amandeDouce: string;
-  argan: string;
-  avocat: string;
-  baobab: string;
-  bourrache: string;
-  brocoli: string;
-  coco: string;
-  jojoba: string;
-  karite: string;
-  macadamia: string;
-  mangue: string;
-  neem: string;
-  nigelle: string;
-  olive: string;
-  owala: string;
-  pepinDeRisin: string;
-  photo: string;
-  piqui: string;
-  price: number;
-  ricin: string;
-  sapote: string;
+export const enum RoleName {
+  ROLE_USER = 'ROLE_USER',
+  ROLE_LABORATORY = 'ROLE_LABORATORY',
+  ROLE_ADMIN = 'ROLE_ADMIN',
 }

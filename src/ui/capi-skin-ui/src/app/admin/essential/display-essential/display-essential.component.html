@@ -1,0 +1,56 @@
+<mat-card style="background-color: #f1f2f6;">
+    <mat-card-header>
+      <mat-card-title>
+        Essential oil
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+  
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Details</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pro of essentials | paginate:{id:'displayEssential', itemsPerPage: 2, currentPage:displayEssential}">
+            <td style="font-weight: bold; color: #2c3e50;">{{pro.name}}</td>
+            <td>
+              <button mat-mini-fab disabled style="color: #c23616; font-weight: bold;">
+              {{pro.price}}£
+            </button>
+            </td>
+            <td>
+              <button mat-icon-button>
+              <span class="material-icons details" (click)="detailsEssential(pro.id)">
+                visibility
+              </span>
+              </button>
+            </td>
+            <td>
+              <button mat-icon-button>
+                <span class="material-icons edit" (click)="editEssential(pro.id)">
+                  edit
+                </span>
+              </button>
+             </td>
+            <td>
+              <button mat-icon-button>
+                <span class="material-icons delete" (click)="deleteEssential(pro.id)">
+                  delete_forever
+                </span>
+              </button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="card-footer bg-transparent border-danger">
+        <pagination-controls (pageChange)="displayEssential=$event" id="displayEssential"></pagination-controls>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  

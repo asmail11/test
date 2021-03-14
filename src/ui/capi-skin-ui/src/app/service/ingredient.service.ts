@@ -10,24 +10,24 @@ export class IngredientService {
 
   constructor(private http: HttpClient) {}
 
-  addIngrdient(ingredientDto: IngredientDto, idFace: number): Observable<IngredientDto> {
+  addIngredient(ingredientDto: IngredientDto): Observable<IngredientDto> {
     return this.http.post<IngredientDto>(
-      `http://localhost:8080/api/addIngrdient/${idFace}`,
+      `http://localhost:8080/api/addIngredient`,
       ingredientDto
     );
   }
-  editIngrdient(ingredientDto: IngredientDto, idIngrdient: number): Observable<IngredientDto> {
+  editIngredient(ingredientDto: IngredientDto, idIngrdient: number): Observable<IngredientDto> {
     return this.http.put<IngredientDto>(
-      `http://localhost:8080/api/editIngrdient/${idIngrdient}`,
+      `http://localhost:8080/api/editIngredient/${idIngrdient}`,
       ingredientDto
     );
   }
-  findIngrdient(idIngrdient: number): Observable<IngredientDto> {
-    return this.http.get<IngredientDto>(`http://localhost:8080/api/findIngrdient/${idIngrdient}`);
+  findIngredient(idIngrdient: number): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/findIngredient/${idIngrdient}`);
   }
-  deleteIngrdient(idIngrdient: number): Observable<IngredientDto> {
-    return this.http.delete<IngredientDto>(
-      `http://localhost:8080/api/deleteIngrdient/${idIngrdient}`
+  deleteIngredient(idIngrdient: number): Observable<IngredientDto> {
+    return this.http.delete<any>(
+      `http://localhost:8080/api/deleteIngredient/${idIngrdient}`
     );
   }
   findIngrdientsForFaceAndCare(idFace: number): Observable<IngredientDto[]> {
@@ -35,4 +35,11 @@ export class IngredientService {
       `http://localhost:8080/api/findIngrdientsForFaceAndCare/${idFace}`
     );
   }
+  ingredientNameExists(checkedName: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/ingredientNameExists/${checkedName}`);
+  }
+  findIngredients(): Observable<IngredientDto[]> {
+    return this.http.get<IngredientDto[]>(`http://localhost:8080/api/findIngredients`);
+  }
+
 }

@@ -1,26 +1,42 @@
 
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import { RegisterInfo } from '../modal/RegisterInfo';
-import { LoginInfo } from '../modal/LoginInfo';
+import { Observable } from 'rxjs';
+import { Singin } from '../modal/Singin';
+import { SingUp } from '../modal/Singup';
+import { of } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 
-
-const httpOptions = {
-  headers: new HttpHeaders({'content-Type': 'application/json'}),
-};
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  userData: any;
 
-  public login(creadentials: LoginInfo): Observable<LoginInfo> {
-    return this.http.post<LoginInfo>('http://localhost:8080/api/auth/login', creadentials, httpOptions);
-  }
-  public signup(info: RegisterInfo): Observable<RegisterInfo> {
-    return this.http.post<RegisterInfo>(`http://localhost:8080/api/auth/register`, info, httpOptions);
+  constructor(private http: HttpClient) {
   }
 
+  signin(singin: Singin): Observable<any> {
+    if (singin) {
+      this.userData = singin;
+      localStorage.setItem('user', JSON.stringify(this.userData));
+      JSON.parse(localStorage.getItem('user'));
+    } else {
+      localStorage.setItem('user', null);
+      JSON.parse(localStorage.getItem('user'));
+    }
+    return this.http.post<any>(`http://localhost:8080/api/auth/signin`, singin);
+  }
+
+  signup(singup: SingUp): Observable<any> {
+    return this.http.post<any>(`http://localhost:8080/api/auth/signup`, singup);
+  }
+  get isLoggedIn(): boolean {
+    const user = JSON.parse(localStorage.getItem('user'));
+    return (user !== null) ? true : false;
+  }
+  SignOut() {
+    localStorage.removeItem('user');
+  }
 }

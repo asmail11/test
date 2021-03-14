@@ -1,0 +1,49 @@
+
+.delete {
+  color: #c0392b;
+}
+.edit {
+  color: #8e44ad;
+}
+.details {
+  color: #3498db;
+}
+  .material-icons {
+    cursor: pointer;
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+  }
+  
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  @media screen and (max-width: 600px) {
+    mat-card-actions {
+     text-align: center;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    mat-card-actions button {
+     margin-top: 10px;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    mat-card-actions {
+      text-align: center;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    mat-card-actions button {
+      margin-top: 10px;
+    }
+  }

@@ -72,6 +72,11 @@ public class BaseProductManagerServiceImpl implements BaseProductManagerService 
 		BaseProduct existBaseProduct = baseProductDao.getOne(idBaseProduct);
 		baseProductDao.delete(existBaseProduct);
 
+	}
+
+	@Override
+	public boolean baseProductNameExists(String checkedName) {
+		return baseProductDao.existsByName(checkedName);
 	};
 
 }

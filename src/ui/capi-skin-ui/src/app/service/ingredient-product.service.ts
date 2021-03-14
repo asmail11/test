@@ -25,9 +25,9 @@ export class IngredientProductService {
   findIngredientProduct(idIngrdient: number): Observable<IngredientProductDto> {
     return this.http.get<IngredientProductDto>(`http://localhost:8080/api/findIngredientProduct/${idIngrdient}`);
   }
-  deleteIngredientProduct(idIngrdient: number): Observable<IngredientProductDto> {
+  deleteIngredientProduct(idIngrdient: number, idbase: number): Observable<IngredientProductDto> {
     return this.http.delete<IngredientProductDto>(
-      `http://localhost:8080/api/deleteIngredientProduct/${idIngrdient}`
+      `http://localhost:8080/api/deleteIngredientProduct/${idIngrdient}/${idbase}`
     );
   }
   findIngredientProductForBaseProduct(idBase: number): Observable<IngredientProductDto[]> {

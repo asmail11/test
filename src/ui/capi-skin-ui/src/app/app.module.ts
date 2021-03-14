@@ -1,48 +1,60 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { BrowserModule, Title } from '@angular/platform-browser';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA , NO_ERRORS_SCHEMA } from '@angular/core';
+import { AuthModule } from './shared/auth.module';
 import { AppRoutingModule } from './shared/app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './shared/material-module';
 import { AdminRoutingModule } from './shared/admin-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './shared/admin.module';
+import { DeleteDialogComponent } from './confirmation-dialog-model/delete-dialog/delete-dialog.component';
+import { AlertComponent } from './confirmation-dialog-model/alert/alert.component';
 import { HomeComponent } from './layout/home/home.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { NavbarComponent } from './layout/navbar/navbar.component';
-import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './layout/not-found/not-found.component';
-import { AuthModule } from './shared/auth.module';
+import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { UserModule } from './shared/user.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { MaterialModule } from './shared/material-module';
+import { UpdateProfileComponent } from './user/update-profile/update-profile.component';
+import { AuthInterceptor } from './auth/service/auth.interceptor';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    DeleteDialogComponent,
+    AlertComponent,
     HomeComponent,
-    FooterComponent,
-    NavbarComponent,
     NotFoundComponent,
+    NavBarComponent,
+    FooterComponent,
+    UpdateProfileComponent,
+
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AdminRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule,
+    AdminModule,
+    AuthModule,
+    UserModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    AdminModule,
-    AuthModule
+    MaterialModule,
+    NgxPaginationModule,
+  
+
   ],
-  entryComponents: [
-    AppComponent,
-    AdminRoutingModule
-  ],
-  providers: [],
+  providers: [Title, AuthInterceptor],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA ],
-  exports: [AdminModule, AuthModule]
+  exports: [AdminModule, AuthModule, UserModule]
 })
 export class AppModule { }

@@ -1,0 +1,105 @@
+.row {
+    margin-right: 0px;;
+    margin-left: 0px;
+  }
+  .full-height {
+    background: #f1f2f6;
+  }
+  
+  .root {
+    width: 100%;
+    font-size: 16px;
+    display: block;
+    background: #f5f6fa;
+    padding: 0 10px;
+    border-radius: 4px;
+  }
+  @media screen and (max-width: 600px) {
+    #mat-icon-plus,
+    #tree {
+      padding: 0 !important;
+    }
+  }
+  @media screen and (max-width: 800px) {
+    #mat-icon-plus,
+    #tree {
+      margin-left: 1px !important;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    #mat-icon-plus,
+    .root a{
+      display: block ruby;
+      margin-left: -5px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    #mat-icon-plus {
+      display: block ruby;
+      margin-left: -20px;
+      margin-bottom: 5px;
+    }
+  }
+
+  a {
+    font-family: initial;
+    color: #2f3542;
+    text-decoration: none;
+  }
+  
+  #mat-icon-plus {
+    color: #666a6c;
+    font-size: 24px;
+    margin-top: 4px;
+  }
+  
+  .root:hover {
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+    cursor: pointer;
+  }
+  
+  #chevronIcon {
+    cursor: pointer;
+  }
+  
+  .mat-tree-node {
+    margin-bottom: -15px;
+  }
+  
+  h2 {
+    background: #e58e26;
+    padding: 0 16px;
+    border-radius: 5px;
+  }
+  .root a:hover {
+    color: #1976d2 !important;
+    margin-left: 10px;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+  .linkActive {
+    background-color: antiquewhite !important;
+    padding: 2px 10px 0 3px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    color: #a94442 !important;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+  }
+
+  @media screen and (max-width: 600px) {
+    #tree {
+      margin-left: 1px !important;
+    }
+  }
+  .mat-list-item{
+    color: #1976d2;
+  }
+  .mat-list-item:hover {
+    color: #a94442 !important;
+  }

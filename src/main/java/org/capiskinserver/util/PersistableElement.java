@@ -2,6 +2,9 @@ package org.capiskinserver.util;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -24,6 +27,14 @@ public abstract class PersistableElement implements Serializable {
     @Column(name = "updatedAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
+    
+
+	@NotBlank
+	@Size(min = 3, max = 50)
+	@Column(unique = true)
+	private String name;
+
+	private String photo;
     
     @Column(columnDefinition = "text")
     private String description;
@@ -62,6 +73,22 @@ public abstract class PersistableElement implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
     
  

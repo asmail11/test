@@ -1,0 +1,37 @@
+<mat-card style="background-color: #f1f2f6;">
+    <mat-card-content>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+          <img class="img-thumbnail" style="height: 300px; max-height: 400px;" mat-card-image src="{{typeDto.photo}}" alt="{{typeDto.name}}">
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+          <mat-card-header>
+            <mat-card-title>
+              Type: {{typeDto.name}}
+            </mat-card-title>
+            <mat-card-subtitle style="font-weight: bold" *ngIf="typeDto.createdAt!=null">Created at: {{typeDto.createdAt | date}}</mat-card-subtitle>
+            <mat-card-subtitle *ngIf="typeDto.updatedAt!=null">Updated at: {{typeDto.updatedAt | date}}</mat-card-subtitle>
+          </mat-card-header>
+          <p class="description">
+            {{typeDto.description}}
+           </p>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <button mat-stroked-button color="primary" (click)="addCharacteristicDto(typeDto.id)">Add a new characteristic <span
+        class="material-icons">
+        add
+      </span></button>
+        <button mat-stroked-button color="accent" (click)="editType(typeDto.id)">Update {{typeDto.name}}<span
+          class="material-icons">
+           edit
+        </span></button>
+        <button mat-stroked-button color="warn" (click)="deleteType(typeDto.id)">Delete {{typeDto.name}}<span
+            class="material-icons">
+            delete_forever
+          </span></button>
+      </mat-card-actions>
+  </mat-card><br><br>
+

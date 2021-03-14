@@ -1,0 +1,143 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Update your account</mat-card-title>
+    <mat-card-subtitle>Fill out your information</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+        <form (ngSubmit)="registerForm.form.valid" #registerForm="ngForm" novalidate>
+          <mat-card style="border: 1px solid #ced4da;">
+            <mat-card-content>
+              <div class="row g-3">
+                <div class="col-auto">
+                  <input type="text" class="form-control" placeholder="Fullname" name="name"
+                    [(ngModel)]="accountDto.name" required minlength="4" #name="ngModel">
+                  <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger"
+                    style="margin-top: 10px">
+                    <div *ngIf="name.errors.required">
+                      Name is required.
+                    </div>
+                    <div *ngIf="name.errors.minlength">
+                      Name must be at least 3 characters long.
+                    </div>
+                    <div *ngIf="name.errors.forbiddenName">
+                      Name cannot be Bob.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control" placeholder="Address" name="address"
+                    [(ngModel)]="accountDto.address" required minlength="4" #address="ngModel">
+                  <div *ngIf="address.invalid && (address.dirty || address.touched)" class="alert alert-danger"
+                    style="margin-top: 10px">
+                    <div *ngIf="address.errors.required">
+                      Address is required.
+                    </div>
+                    <div *ngIf="address.errors.minlength">
+                      Address must be at least 3 characters long.
+                    </div>
+                    <div *ngIf="address.errors.forbiddenName">
+                      Address cannot be Bob.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control" placeholder="City" name="city" [(ngModel)]="accountDto.city"
+                    required minlength="2" #city="ngModel">
+                  <div *ngIf="city.invalid && (city.dirty || city.touched)" class="alert alert-danger"
+                    style="margin-top: 10px">
+                    <div *ngIf="city.errors.required">
+                      City is required.
+                    </div>
+                    <div *ngIf="city.errors.minlength">
+                      City must be at least 2 characters long.
+                    </div>
+                    <div *ngIf="city.errors.forbiddenName">
+                      City cannot be Bob.
+                    </div>
+                  </div>
+                </div>
+              </div><br>
+              <div class="row g-3">
+                <div class="col-auto">
+                  <input type="text" class="form-control" placeholder="Code postale" name="codePostale"
+                    [(ngModel)]="accountDto.codePostale" required minlength="5" #codePostale="ngModel">
+                  <div *ngIf="codePostale.invalid && (codePostale.dirty || codePostale.touched)"
+                    class="alert alert-danger" style="margin-top: 10px">
+                    <div *ngIf="codePostale.errors.required">
+                      Code postale is required.
+                    </div>
+                    <div *ngIf="codePostale.errors.minlength">
+                      Code postale must be at least 2 characters long.
+                    </div>
+                    <div *ngIf="codePostale.errors.forbiddenName">
+                      Code postale cannot be Bob.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <input type="tel" class="form-control" placeholder="Phone" name="phone" [(ngModel)]="accountDto.phone"
+                    required maxlength="10" minlength="10" #phone="ngModel" pattern="^((\\+91-?)|0)?[0-9]{10}$">
+                  <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="alert alert-danger"
+                    style="margin-top: 10px">
+                    <div *ngIf="phone.errors.required">
+                      Phone is required.
+                    </div>
+                    <div *ngIf="phone.errors && phone.errors.pattern">
+                      Phone is invalid
+                    </div>
+                    <div *ngIf="phone.errors.forbiddenName">
+                      Phone cannot be Bob.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <mat-radio-group #genderControl="ngModel" [(ngModel)]="accountDto.gender" name="gender"
+                    (ngModelChange)="setGender()" required>
+                    <mat-radio-button value="female">Female</mat-radio-button>
+                    <mat-radio-button value="male" style="margin-left: 10px">Male</mat-radio-button>
+                  </mat-radio-group><br>
+                  <div *ngIf="genderControl.invalid && (genderControl.dirty || genderControl.touched)"
+                    class="alert alert-danger" style="margin-top: 10px">
+                    <div *ngIf="genderControl.errors.required">
+                      Please choose your gender.
+                    </div>
+                  </div>
+                </div>
+              </div><br>
+              <mat-card class="result" style="border: 1px solid #ced4da;">
+                <mat-card-content>
+                  <h2 class="example-h2">Accept condition</h2>
+
+                  <div class="row">
+                    <div class="col-lg-1" style="padding-right: 0 !important;">
+                      <section>
+                        <mat-checkbox [checked]="accountDto.conditionAccept" class="checkbox"
+                          (change)="toggleAcceptCondition($event)" required></mat-checkbox>
+                      </section>
+                    </div>
+                    <div class="col-lg-11" style="padding-left: 0 !important">
+                      <p>
+                        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan. A
+                        small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+                        bred for hunting.
+                      </p>
+                    </div>
+                  </div>
+                </mat-card-content>
+              </mat-card><br>
+
+              <div>
+                <button mat-raised-button color="primary" (click)="updateAccount(accountDto.id)"
+                  [disabled]="name.invalid || address.invalid || city.invalid || codePostale.invalid 
+                  || phone.invalid || registerForm.invalid || genderControl.invalid || !validateConditionAccept">Next</button>
+                  <button mat-mini-fab mat-dialog-close color="warn" style="margin-left: 10px;">
+                    <mat-icon>close</mat-icon>
+                  </button>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </form>
+
+  </mat-card-content>
+</mat-card><br><br>

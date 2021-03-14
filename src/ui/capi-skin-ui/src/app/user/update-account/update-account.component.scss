@@ -1,0 +1,24 @@
+.mat-step-header {
+    pointer-events: none !important;
+}
+.form-control {
+    color: black !important;
+}
+#icon-credit i {
+    font-size: 34px;
+}
+#payemnt .btn-outline-secondary:hover{
+cursor: not-allowed;
+background-color: #ced4da;
+}
+#payemnt .btn-outline-secondary {
+    border-color: #ced4da !important;
+    border-right: none !important;
+    border-radius: 0 !important;
+}
+#payemnt input {
+    border-left: none !important;
+    margin-left: -2px;
+    font-family: initial;
+    border-radius: 0 !important;
+}

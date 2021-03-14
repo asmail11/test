@@ -1,1 +1,69 @@
-<p>add-characteristic works!</p>
+<div class="form-content">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Add a new characteristic </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+        <br />
+        <mat-progress-bar mode="indeterminate" *ngIf="progressBar"></mat-progress-bar>
+        <br />
+        <form #registerForm="ngForm">
+          <mat-form-field style="width: 100%">
+            <mat-label>Enter name</mat-label>
+            <input type="text" matInput name="name" minlength="3" [(ngModel)]="characteristicDto.name" #name="ngModel"
+              required />
+            <div class="alert alert-danger" *ngIf="showNameExists" style="margin-top: 10px">
+              <span>Name exist please change the name</span>
+            </div>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger" style="margin-top: 10px">
+              <div *ngIf="name.errors.required">
+                Name is required.
+              </div>
+              <div *ngIf="name.errors.minlength">
+                Name must be at least 3 characters long.
+              </div>
+              <div *ngIf="name.errors.forbiddenName">
+                Name cannot be Bob.
+              </div>
+  
+            </div>
+          </mat-form-field>
+          <br />
+
+          <mat-form-field style="width: 100%">
+            <mat-label>Enter photo</mat-label>
+            <input type="text" matInput name="photo" minlength="3" [(ngModel)]="characteristicDto.photo" #photo="ngModel"
+              required />
+            <div *ngIf="photo.invalid && (photo.dirty || photo.touched)" class="alert alert-danger" style="margin-top: 10px">
+              <div *ngIf="photo.errors.required">
+                Photo is required.
+              </div>
+              <div *ngIf="photo.errors.minlength">
+                Photo must be at least 3 characters long.
+              </div>
+              <div *ngIf="photo.errors.forbiddenName">
+                Photo cannot be Bob.
+              </div>
+            </div>
+          </mat-form-field>
+          <br/>
+  
+          <mat-form-field style="width: 100%">
+            <mat-label>Enter description</mat-label>
+            <textarea matInput placeholder="Description" name="description" [(ngModel)]="characteristicDto.description"
+              #description="ngModel"></textarea>
+          </mat-form-field><br />
+  
+          <button mat-raised-button color="primary" [disabled]="photo.invalid || name.invalid"
+            (click)="addCharacteristicDto()" style="width: 10em !important">
+            Save
+          </button>
+          <button mat-mini-fab mat-dialog-close color="warn" style="margin-left: 10px;">
+            <mat-icon>close</mat-icon>
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+ 

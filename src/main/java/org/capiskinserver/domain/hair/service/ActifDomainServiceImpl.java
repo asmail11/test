@@ -4,7 +4,6 @@ import java.util.Date;
 
 import org.capiskinserver.domain.hair.dao.ActifDao;
 import org.capiskinserver.domain.hair.modal.Actif;
-import org.capiskinserver.domain.hair.modal.Characteristic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +14,9 @@ public class ActifDomainServiceImpl implements ActifDomainService {
 	private ActifDao actifDao;
 
 	@Override
-	public Actif addActif(Actif actif, Characteristic characteristic) {
-		if (actif != null && characteristic != null) {
+	public Actif addActif(Actif actif) {
+		if (actif != null) {
 			actif.setCreatedAt(new Date());
-			actif.setCharacteristic(characteristic);
-			characteristic.setActif(actif);
 			return actifDao.save(actif);
 		}
 		return null;

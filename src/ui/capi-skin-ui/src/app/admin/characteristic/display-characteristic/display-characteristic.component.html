@@ -1,1 +1,60 @@
-<p>display-characteristic works!</p>
+<mat-card style="background-color: #f1f2f6;">
+  <mat-card-content>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <img class="img-thumbnail" style="height: 300px; max-height: 400px;" mat-card-image src="{{characteristicDto.photo}}" alt="{{characteristicDto.name}}">
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+        <mat-card-header>
+          <mat-card-title>
+            Characteristic: {{characteristicDto.name}}
+          </mat-card-title>
+          <mat-card-subtitle style="font-weight: bold" *ngIf="characteristicDto.createdAt!=null">Created at: {{characteristicDto.createdAt | date}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="characteristicDto.updatedAt!=null">Updated at: {{characteristicDto.updatedAt | date}}</mat-card-subtitle>
+        </mat-card-header>
+        <p class="description">
+          {{characteristicDto.description}}
+         </p>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button mat-stroked-button color="primary" (click)="addIngredientForType(characteristicDto.id)">Add an ingredient
+      <span class="material-icons">
+        add
+      </span></button>
+    <button mat-stroked-button color="primary" (click)="addActifForType(characteristicDto.id)">Add an actif <span
+        class="material-icons">
+        add
+      </span></button>
+    <button mat-stroked-button color="primary" (click)="addEssentialForType(characteristicDto.id)">Add an essential
+      <span class="material-icons">
+        add
+      </span></button>
+    <button mat-stroked-button color="primary" (click)="addNeeds(characteristicDto.id)">Add needs<span
+        class="material-icons">
+        add
+      </span></button>
+  </mat-card-actions>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button
+      [routerLink]="['/tree-application/'+idBody+'/display-characteristic/'+characteristicDto.id+'/details-ingredeint-characteristic/'+characteristicDto.id]"
+      mat-stroked-button>Ingredient details<span class="material-icons">
+        visibility
+      </span></button>
+    <button mat-stroked-button color="accent" (click)="editCharacteristic(characteristicDto.id)">Update
+      {{characteristicDto.name}}<span class="material-icons">
+        edit
+      </span></button>
+    <button mat-stroked-button color="warn" (click)="deleteCharacteristic(characteristicDto.id)">Delete
+      {{characteristicDto.name}}<span class="material-icons">
+        delete_forever
+      </span></button>
+  </mat-card-actions>
+</mat-card><br><br>
+
+<div style="margin-bottom: 50px;">
+  <router-outlet></router-outlet>
+</div>

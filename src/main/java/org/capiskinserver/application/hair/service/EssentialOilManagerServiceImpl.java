@@ -1,10 +1,12 @@
 package org.capiskinserver.application.hair.service;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.capiskinserver.application.hair.dto.EssentialOilDto;
 import org.capiskinserver.domain.hair.OrikaBeanMapper;
-import org.capiskinserver.domain.hair.dao.CharacteristicDao;
 import org.capiskinserver.domain.hair.dao.EssentialOilDao;
-import org.capiskinserver.domain.hair.modal.Characteristic;
 import org.capiskinserver.domain.hair.modal.EssentialOil;
 import org.capiskinserver.domain.hair.service.EssentialOilDomainService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,26 +21,22 @@ public class EssentialOilManagerServiceImpl implements EssentialOilManagerServic
 
 	private EssentialOilDomainService essentialOilDomainService;
 
-	private CharacteristicDao characteristicDao;
-
 	private OrikaBeanMapper orikaBeanMapper;
 
 	@Autowired
 	public EssentialOilManagerServiceImpl(EssentialOilDao essentialOilDao,
-			EssentialOilDomainService essentialOilDomainService, CharacteristicDao characteristicDao,
+			EssentialOilDomainService essentialOilDomainService,
 			OrikaBeanMapper orikaBeanMapper) {
 		super();
 		this.essentialOilDao = essentialOilDao;
 		this.essentialOilDomainService = essentialOilDomainService;
-		this.characteristicDao = characteristicDao;
 		this.orikaBeanMapper = orikaBeanMapper;
 	}
 
 	@Override
-	public EssentialOilDto addEssentialOil(EssentialOilDto essentialOilDto, long idCharar) {
+	public EssentialOilDto addEssentialOil(EssentialOilDto essentialOilDto) {
 		EssentialOil essentialOil = orikaBeanMapper.map(essentialOilDto, EssentialOil.class);
-		Characteristic characteristic = characteristicDao.getOne(idCharar);
-		return orikaBeanMapper.convertDTO(essentialOilDomainService.addEssentialOil(essentialOil, characteristic),
+		return orikaBeanMapper.convertDTO(essentialOilDomainService.addEssentialOil(essentialOil),
 				EssentialOilDto.class);
 	}
 
@@ -55,19 +53,24 @@ public class EssentialOilManagerServiceImpl implements EssentialOilManagerServic
 		return orikaBeanMapper.convertDTO(essentialOilDao.getOne(idEssentialOil), EssentialOilDto.class);
 	}
 
+
 	@Override
-	public EssentialOilDto findEssentialOilForCharar(long idCharar) {
-		Characteristic characteristic = characteristicDao.getOne(idCharar);
-		return orikaBeanMapper.convertDTO(characteristic.getEssentialOil(), EssentialOilDto.class);
+	public void deleteEssentialOil(long idEssentialOil) {
+		EssentialOil existEssentialOil = essentialOilDao.getOne(idEssentialOil);
+		essentialOilDao.delete(existEssentialOil);
 	}
 
 	@Override
-	public void deleteEssentialOil(long idEssentialOil, long idCharar) {
-		Characteristic characteristic = characteristicDao.getOne(idCharar);
-		EssentialOil existEssentialOil = essentialOilDao.getOne(idEssentialOil);
-		characteristic.setEssentialOil(null);
-		existEssentialOil.setCharacteristic(null);
-		essentialOilDao.delete(existEssentialOil);
+	public boolean essentialOilNameExists(String checkedName) {
+		return essentialOilDao.existsByName(checkedName);
+	}
+
+	@Override
+	public List<EssentialOilDto> findEssentialOils() {
+		List<EssentialOil> essentialOils = essentialOilDao.findAll();
+		essentialOils = essentialOils.stream().sorted(Comparator.comparing(EssentialOil::getName))
+				.collect(Collectors.toList());
+		return orikaBeanMapper.convertListDTO(essentialOils, EssentialOilDto.class);
 	}
 
 }

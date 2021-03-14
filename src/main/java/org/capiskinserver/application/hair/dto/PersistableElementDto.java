@@ -12,6 +12,10 @@ public class PersistableElementDto {
     private Date updatedAt;
     
     private String description;
+    
+    private String name;
+    
+    private String photo;
 
 	public Long getId() {
 		return id;
@@ -43,6 +47,22 @@ public class PersistableElementDto {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
     
     

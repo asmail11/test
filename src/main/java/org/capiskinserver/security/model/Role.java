@@ -20,11 +20,11 @@ public class Role {
 	    @Enumerated(EnumType.STRING)
 	    @NaturalId
 	    @Column(length = 60)
-	    private RoleName name;
+	    private ERole name;
 
 	    public Role() {}
 
-	    public Role(RoleName name) {
+	    public Role(ERole name) {
 	        this.name = name;
 	    }
 
@@ -36,11 +36,11 @@ public class Role {
 	        this.id = id;
 	    }
 
-	    public RoleName getName() {
+	    public ERole getName() {
 	        return name;
 	    }
 
-	    public void setName(RoleName name) {
+	    public void setName(ERole name) {
 	        this.name = name;
 	    }
 }

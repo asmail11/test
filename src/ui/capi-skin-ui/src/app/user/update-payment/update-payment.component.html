@@ -1,0 +1,97 @@
+<mat-card style="border: 1px solid #ced4da;" id="payemnt">
+  <form #pyemntForm="ngForm">
+    <div class="input-group mb-3">
+      <input #nameOnCard="ngModel" minlength="2" [(ngModel)]="paymentDto.nameOnCard" name="nameOnCard"
+        style="border-left: 1px solid #ced4da !important;" type="text" class="form-control"
+        placeholder="Totulaire de la carte" required>
+    </div>
+    <br>
+    <div *ngIf="nameOnCard.invalid && (nameOnCard.dirty || nameOnCard.touched)" class="alert alert-danger"
+      style="margin-top: 10px">
+      <div *ngIf="nameOnCard.errors.required">
+        Name is required.
+      </div>
+      <div *ngIf="nameOnCard.errors.minlength">
+        Name must be at least 2 characters long.
+      </div>
+      <div *ngIf="nameOnCard.errors.forbiddenName">
+        Cart number cannot be Bob.
+      </div>
+    </div>
+    <div class="alert alert-danger" *ngIf="isAddPaymentFailed">
+      Failed! <strong> {{paymentDto.cartNumber}} </strong> is an valid credit card number
+    </div>
+    <div *ngIf="cartNumber.invalid && (cartNumber.dirty || cartNumber.touched)" class="alert alert-danger"
+      style="margin-top: 10px">
+      <div *ngIf="cartNumber.errors.required">
+        Cart number is required.
+      </div>
+      <div *ngIf="cartNumber.errors.minlength">
+        Cart number must be at least 10 characters long.
+      </div>
+      <div *ngIf="cartNumber.errors.maxLength">
+        Cart number must be More then 10 characters long.
+      </div>
+      <div *ngIf="cartNumber.errors.forbiddenName">
+        Cart number cannot be Bob.
+      </div>
+    </div>
+    <div *ngIf="expiry.invalid && (expiry.dirty || expiry.touched)" class="alert alert-danger"
+      style="margin-top: 10px">
+      <div *ngIf="expiry.errors.required">
+        Expiration is required.
+      </div>
+      <div *ngIf="expiry.errors.minlength">
+        Expiration must be 4 characters.
+      </div>
+      <div *ngIf="expiry.errors.forbiddenName">
+        Expiration cannot be Bob.
+      </div>
+    </div>
+    <div *ngIf="cryptogram.invalid && (cryptogram.dirty || cryptogram.touched)" class="alert alert-danger"
+      style="margin-top: 10px">
+      <div *ngIf="cryptogram.errors.required">
+        Cryptogram is required.
+      </div>
+      <div *ngIf="cryptogram.errors.minlength">
+        Cryptogram must be 3 characters.
+      </div>
+      <div *ngIf="cryptogram.errors.forbiddenName">
+        Cryptogram cannot be Bob.
+      </div>
+    </div>
+    <div class="input-group mb-3" style="margin-bottom: 0px !important;">
+      <button style="border-bottom-color: #fff !important;" class="btn btn-outline-secondary" type="button"
+        id="button-addon1"><i class="far fa-credit-card"></i></button>
+      <input (keyup)="cartNumberCorrect()" #cartNumber="ngModel" minlength="10" maxLength="16" [(ngModel)]="paymentDto.cartNumber"
+        name="cartNumber" style="border-bottom-color: #fff;" type="text" class="form-control"
+        placeholder="Numéro de la carte" required>
+    </div>
+    <div class="row">
+      <div class="col-6" style="padding-right: 0 !important;">
+        <div class="input-group mb-3">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i
+              class="fas fa-calendar-check"></i></button>
+          <input minlength="4" maxLength="4" #expiry="ngModel" [(ngModel)]="paymentDto.expiry" name="expiry"
+            type="time" class="form-control" placeholder="Date d'expiration" required>
+        </div>
+      </div>
+      <div class="col-6" style="padding-left: 0 !important;">
+        <div class="input-group mb-3">
+          <button class="btn btn-outline-secondary" type="button" id="button-addon1"><i
+              class="fas fa-lock"></i></button>
+          <input minlength="3" maxLength="3" #cryptogram="ngModel" [(ngModel)]="paymentDto.cryptogram"
+            name="cryptogram" type="text" class="form-control" placeholder="Cryptogramme" required>
+          <button (click)="cryptogrammeInfo()" class="btn btn-secondary" type="button"
+            style="background-color: #FFF; border-radius: 0 !important; border-color: #ced4da !important;">
+            <i class="fas fa-info-circle" style="color: #6c757d;"></i></button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div>
+    <button mat-raised-button color="primary" (click)="updatePayment(paymentDto.id)"
+      [disabled]="nameOnCard.invalid || cartNumber.invalid || expiry.invalid || cryptogram.invalid">Validez</button>
+      <button mat-raised-button color="accent" style="margin-left: 10px;">Annuler</button>
+  </div>
+</mat-card>

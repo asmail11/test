@@ -1,1 +1,34 @@
-<p>display-base-product works!</p>
+<mat-card style="background-color: #f1f2f6;">
+  <mat-card-content>
+    <div class="row">
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <img class="img-thumbnail" style="height: 300px; max-height: 400px;" mat-card-image src="{{baseProductDto.photo}}" alt="{{baseProductDto.name}}">
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+        <mat-card-header>
+          <mat-card-title>
+            Base productDto: {{baseProductDto.name}}
+          </mat-card-title>
+          <mat-card-subtitle style="font-weight: bold" *ngIf="baseProductDto.createdAt!=null">Created at: {{baseProductDto.createdAt | date}}</mat-card-subtitle>
+          <mat-card-subtitle *ngIf="baseProductDto.updatedAt!=null">Updated at: {{baseProductDto.updatedAt | date}}</mat-card-subtitle>
+        </mat-card-header>
+        <p class="description">
+          {{baseProductDto.description}}
+         </p>
+      </div>
+    </div>
+  </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+
+      <button mat-stroked-button color="primary" (click)="editBaseProduct(baseProductDto.id)">Update {{baseProductDto.name}}<span
+        class="material-icons">
+        edit
+      </span></button>
+      <button mat-stroked-button color="warn" (click)="deleteBaseProduct(baseProductDto.id)">Delete {{baseProductDto.name}}<span
+        class="material-icons">
+        delete_forever
+      </span></button>
+    </mat-card-actions>
+  </mat-card>
+  

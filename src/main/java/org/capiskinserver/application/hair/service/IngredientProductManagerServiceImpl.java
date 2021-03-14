@@ -73,4 +73,9 @@ public class IngredientProductManagerServiceImpl implements IngredientProductMan
 		return orikaBeanMapper.convertDTO(baseProduct.getIngredientProduct(), IngredientProductDto.class);
 	}
 
+	@Override
+	public boolean ingredientProductNameExists(String checkedName) {
+		return ingredientProductDao.existsByName(checkedName);
+	}
+
 }

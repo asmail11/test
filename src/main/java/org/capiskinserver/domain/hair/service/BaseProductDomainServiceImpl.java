@@ -35,6 +35,7 @@ public class BaseProductDomainServiceImpl implements BaseProductDomainService {
 			existBaseProduct.setUpdatedAt(new Date());
 			existBaseProduct.setName(baseProduct.getName());
 			existBaseProduct.setPrice(baseProduct.getPrice());
+			existBaseProduct.setPhoto(baseProduct.getPhoto());
 			existBaseProduct.setDescription(baseProduct.getDescription());
 			return baseProductDao.save(existBaseProduct);
 		}

@@ -1,0 +1,17 @@
+.bg-primary a {
+  color: aliceblue !important;
+}
+.bg-primary a:hover {
+    color: #007bff !important;  
+    background-color: aliceblue; 
+    cursor: pointer;
+    border-radius: 2px;
+    -webkit-transition: all .4s ease-in-out;
+    -moz-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  background-color: #007bff !important;
+  margin-top: 8px;
+  border-top: 2px solid #1f8bff;
+}

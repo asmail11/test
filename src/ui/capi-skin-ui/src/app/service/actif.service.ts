@@ -9,9 +9,9 @@ import { ActifDto } from '../modal/rest';
 export class ActifService {
   constructor(private http: HttpClient) {}
 
-  addActif(actifDto: ActifDto, idCharacteristic: number): Observable<ActifDto> {
+  addActif(actifDto: ActifDto): Observable<ActifDto> {
     return this.http.post<ActifDto>(
-      `http://localhost:8080/api/addActif/${idCharacteristic}`,
+      `http://localhost:8080/api/addActif`,
       actifDto
     );
   }
@@ -24,14 +24,16 @@ export class ActifService {
   findActif(idActif: number): Observable<ActifDto> {
     return this.http.get<ActifDto>(`http://localhost:8080/api/findActif/${idActif}`);
   }
+  finActifs(): Observable<any[]> {
+    return this.http.get<any[]>(`http://localhost:8080/api/finActifs`);
+  }
   deleteActif(idActif: number): Observable<ActifDto> {
     return this.http.delete<ActifDto>(
       `http://localhost:8080/api/deleteActif/${idActif}`
     );
   }
-  findActifForCharacteristic(idCharacteristic: number): Observable<ActifDto[]> {
-    return this.http.get<ActifDto[]>(
-      `http://localhost:8080/api/findActifForCharacteristic/${idCharacteristic}`
-    );
+
+  actifNameExists(checkedName: string): Observable<any> {
+    return this.http.get<any>(`http://localhost:8080/api/actifNameExists/checkedName/${checkedName}`);
   }
 }

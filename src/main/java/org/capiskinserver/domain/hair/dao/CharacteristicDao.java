@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CharacteristicDao extends JpaRepository<Characteristic, Long>{
 
+	boolean existsByName(String name);
+;
 }
